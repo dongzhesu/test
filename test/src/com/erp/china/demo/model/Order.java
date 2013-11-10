@@ -13,6 +13,9 @@ public class Order {
 	@Column(name="customer_id")
 	private Customer customer;
 
+	@Column(name="order_type")
+	private String orderType;
+
 	@Column(name="order_number")
 	private String orderNumber;
 
@@ -21,6 +24,12 @@ public class Order {
 
 	@Column(name="order_date")
 	private java.util.Date orderDate;
+
+	@Column(name="delivery_date")
+	private java.util.Date deliveryDate;
+
+	@Column(name="remarks")
+	private String remarks;
 
 	@Column(name="order_create_time")
 	private java.util.Date createdDate;
@@ -42,6 +51,14 @@ public class Order {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public String getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
 	}
 
 	public String getOrderNumber() {
@@ -67,6 +84,23 @@ public class Order {
 
 	public void setOrderDate(java.util.Date orderDate) {
 		this.orderDate = orderDate;
+	}
+
+	public java.util.Date getDeliveryDate() {
+		if (deliveryDate == null) deliveryDate = new java.util.Date();
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(java.util.Date deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 	public java.util.Date getCreatedDate() {

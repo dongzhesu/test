@@ -42,8 +42,8 @@ public class OrderService {
     }
 
 	@Transactional
-    public String  updateOrder(Order order) {
-		return orderDAO.updateOrder(order);
+    public void updateOrder(Order order) {
+		orderDAO.updateOrder(order);
     }
 
 	@Transactional

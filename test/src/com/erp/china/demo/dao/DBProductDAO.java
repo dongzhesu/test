@@ -56,9 +56,12 @@ public class DBProductDAO extends AbstractDAO implements ProductDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Product existingProduct = (Product) session.load(Product.class, product.getProductId());
+		existingProduct.setProductType(product.getProductType());
+		existingProduct.setProductCode(product.getProductCode());
 		existingProduct.setProductName(product.getProductName());
 		existingProduct.setProductDesc(product.getProductDesc());
 		existingProduct.setProductYear(product.getProductYear());
+		existingProduct.setProductCountry(product.getProductCountry());
 		existingProduct.setProductPrice(product.getProductPrice());
 		existingProduct.setProductPrice2(product.getProductPrice2());
 		existingProduct.setProductQty(product.getProductQty());

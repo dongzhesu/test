@@ -9,6 +9,7 @@ import com.erp.china.demo.dao.DBBookingDAO;
 import com.erp.china.demo.dao.BookingDAO;
 import com.erp.china.demo.model.Booking;
 import com.erp.china.demo.model.BookingKey;
+import com.erp.china.demo.model.Order;
 
 public class BookingService {
 	private static Logger logger = Logger.getLogger(BookingService.class);
@@ -28,14 +29,19 @@ public class BookingService {
 	}
 
 	@Transactional
-    public void createBooking(Booking booking) {
-        bookingDAO.createBooking(booking);
-    }
+	public void createBooking(Booking booking) {
+		bookingDAO.createBooking(booking);
+	}
 
 	@Transactional
-    public List<Booking> getBookingList() {
-        return bookingDAO.bookingList();
-    }
+	public List<Booking> getBookingList() {
+		return bookingDAO.bookingList();
+	}
+
+	@Transactional
+	public List<Booking> getBookingList(Order order) {
+		return bookingDAO.bookingList(order);
+	}
 
 	@Transactional
     public Booking loadBooking(BookingKey bookingKey) {

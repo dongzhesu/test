@@ -145,6 +145,7 @@ public class CustomerController {
 			
 			entityMap.put("customer_id", entity.getCustomerId());
 			entityMap.put("sales_id", entity.getSales().getSalesId());
+			entityMap.put("customer_number", entity.getCustomerNumber());
 			entityMap.put("customer_name", entity.getCustomerName());
 			entityMap.put("customer_type", entity.getCustomerType());
 			entityMap.put("payment_type", entity.getPaymentType());
@@ -175,6 +176,7 @@ public class CustomerController {
 		Sales sales = SalesService.getInstance().loadSales(requestMap.get("sales_id").toString());
 		entity.setSales(sales);
 		entity.setCustomerId(requestMap.get("customer_id")!=null?requestMap.get("customer_id").toString():"");
+		entity.setCustomerName(requestMap.get("customer_number")!=null?requestMap.get("customer_number").toString():"");
 		entity.setCustomerName(requestMap.get("customer_name")!=null?requestMap.get("customer_name").toString():"");
 		entity.setCustomerContact(requestMap.get("customer_contact")!=null?requestMap.get("customer_contact").toString():"");
 		entity.setCustomerType(requestMap.get("customer_type")!=null?requestMap.get("customer_type").toString():"");
@@ -194,6 +196,7 @@ public class CustomerController {
 		Customer entity = new Customer();
 		Sales sales = SalesService.getInstance().loadSales(requestMap.get("sales_id").toString());
 		entity.setSales(sales);
+		entity.setCustomerName(requestMap.get("customer_number")!=null?requestMap.get("customer_number").toString():"");
 		entity.setCustomerName(requestMap.get("customer_name")!=null?requestMap.get("customer_name").toString():"");
 		entity.setCustomerContact(requestMap.get("customer_contact")!=null?requestMap.get("customer_contact").toString():"");
 		entity.setCustomerType(requestMap.get("customer_type")!=null?requestMap.get("customer_type").toString():"");

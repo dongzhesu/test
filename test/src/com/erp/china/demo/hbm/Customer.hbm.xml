@@ -3,8 +3,9 @@
 <hibernate-mapping auto-import="true" default-lazy="false">
 	<class name="com.erp.china.demo.model.Customer" table="tcustomer">
 		<id	name="customerId" type="java.lang.String" column="customer_id" length="25" />
+		<property name="customerNumber" type="java.lang.String" column="customer_number" not-null="true" length="25" />
 		<property name="customerName" type="java.lang.String" column="customer_name" not-null="true" length="150" />
-		<property name="customerType" type="java.lang.String" column="customer_type" not-null="true" length="1" />
+		<property name="customerType" type="java.lang.String" column="customer_type" not-null="true" length="50" />
 		<property name="paymentType" type="java.lang.String" column="payment_type" not-null="false" length="10" />
 		<property name="customerContact" type="java.lang.String" column="customer_contact" not-null="false" length="150" />
 		<property name="customerPhone" type="java.lang.String" column="customer_phone" not-null="false" length="50" />

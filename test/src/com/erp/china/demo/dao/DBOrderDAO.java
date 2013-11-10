@@ -52,7 +52,7 @@ public class DBOrderDAO extends AbstractDAO implements OrderDAO {
 		return order;
 	}
 
-	public String updateOrder(Order order) {
+	public void updateOrder(Order order) {
 		logger.info("modifying existing Order");
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
@@ -65,7 +65,6 @@ public class DBOrderDAO extends AbstractDAO implements OrderDAO {
 		session.saveOrUpdate(existingOrder);
 		tx.commit();
 		logger.info("succeed to modify existing Order");
-		return order.getOrderId();
 	}
 
 	public void removeOrder(String orderId) {

@@ -13,6 +13,9 @@ public class Customer {
 	@Column(name="sales_id")
 	private Sales sales;
 
+	@Column(name="customer_number")
+	private String customerNumber;
+
 	@Column(name="customer_name")
 	private String customerName;
 
@@ -57,6 +60,14 @@ public class Customer {
 
 	public void setSales(Sales sales) {
 		this.sales = sales;
+	}
+
+	public String getCustomerNumber() {
+		return customerNumber;
+	}
+
+	public void setCustomerNumber(String customerNumber) {
+		this.customerNumber = customerNumber;
 	}
 
 	public String getCustomerName() {

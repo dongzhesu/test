@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-lazy="false">
+	<class name="com.erp.china.demo.model.CustomerTypePrice" table="tcustomer_type_price">
+		<id	name="typeId" type="java.lang.String" column="type_id" length="25" />
+		<property name="productPrice" type="java.lang.Double" column="product_price" not-null="false" />
+		<property name="createdDate" type="java.util.Date" column="type_create_time" not-null="true" />
+		<property name="lastModifiedDate" type="java.util.Date" column="type_last_modified_time" not-null="true" />
+		<many-to-one name="customerType" column="customer_type" class="com.erp.china.demo.model.Lookup" not-null="true" />
+		<many-to-one name="productId" column="product_id" class="com.erp.china.demo.model.Product" not-null="true" />
+	</class>
+</hibernate-mapping>

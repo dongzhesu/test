@@ -5,6 +5,7 @@
 		<id	name="storageId" type="java.lang.String" column="storage_id" length="25" />
 		<property name="storageName" type="java.lang.String" column="storage_name" not-null="true" length="50" />
 		<property name="storageDesc" type="java.lang.String" column="storage_desc" not-null="false" length="150" />
+		<!-- <property name="deleted" type="java.lang.Boolean" column="deleted" />  -->
 		<property name="createdDate" type="java.util.Date" column="storage_create_time" not-null="true" />
 		<property name="lastModifiedDate" type="java.util.Date" column="storage_last_modified_time" not-null="true" />
 	</class>

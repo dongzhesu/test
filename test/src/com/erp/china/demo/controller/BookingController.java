@@ -135,6 +135,7 @@ public class BookingController {
 			BookingKey bookingId = new BookingKey();
 			bookingId = entity.getBookingId();
 			entityMap.put("product_id", bookingId.getProduct().getProductId());
+			entityMap.put("product_code", bookingId.getProduct().getProductCode());
 			entityMap.put("product_name", bookingId.getProduct().getProductName());
 			entityMap.put("order_id", bookingId.getOrder().getOrderId());
 			entityMap.put("order_number", bookingId.getOrder().getOrderNumber());

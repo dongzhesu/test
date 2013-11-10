@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.erp.china.demo.model.Booking;
 import com.erp.china.demo.model.Order;
 import com.erp.china.demo.model.Customer;
 import com.erp.china.demo.service.BookingService;
@@ -154,6 +156,7 @@ public class OrderController {
 			Map<String, String> entityMap = new HashMap<String, String>();
 			
 			entityMap.put("order_id", entity.getOrderId());
+			entityMap.put("customer_number", entity.getCustomer().getCustomerNumber());
 			entityMap.put("customer_name", entity.getCustomer().getCustomerName());
 			entityMap.put("customer_id", entity.getCustomer().getCustomerId());
 			entityMap.put("order_number", entity.getOrderNumber());
@@ -177,22 +180,16 @@ public class OrderController {
 	
 	@RequestMapping(value="update", method = RequestMethod.PUT)
 	public @ResponseBody Map update(@RequestBody Map requestMap) {
-		String order_id = requestMap.get("order_id").toString();
-		boolean isBookingDeleted = bookingService.deleteBookingByOrderId(order_id);
-		if (isBookingDeleted) {
-			orderService.removeOrder(order_id);
-		}
 		Order entity = new Order();
 		Customer customer = CustomerService.getInstance().loadCustomer(requestMap.get("customer_id").toString());
 		entity.setCustomer(customer);
-		//entity.setOrderId(requestMap.get("order_id")!=null?requestMap.get("order_id").toString():"");
+		entity.setOrderId(requestMap.get("order_id")!=null?requestMap.get("order_id").toString():"");
 		entity.setOrderNumber(requestMap.get("order_number")!=null?requestMap.get("order_number").toString():"");
 		entity.setOrderPrice(requestMap.get("order_price")!=null?Double.parseDouble(requestMap.get("order_price").toString()):0);
 		entity.setOrderDate(new Date());
-		String orderId = orderService.createOrder(entity);
+		orderService.updateOrder(entity);
 		Map resultMap = new HashMap();
 		resultMap.put("success", true);
-		resultMap.put("orderId", orderId);
 		return resultMap;
 	}
 	
@@ -223,50 +220,82 @@ public class OrderController {
 		return resultMap;
 	}
 
-	@RequestMapping(method = RequestMethod.GET , value = "pdf")
-	public ModelAndView generatePdfReport(ModelAndView modelAndView) {
+	@RequestMapping(method = RequestMethod.GET , value = "/{orderId}/pdf")
+	public ModelAndView generatePdfReport(@PathVariable("orderId") String orderId, ModelAndView modelAndView) {
 		logger.debug("--------------generate PDF report----------");
 		Map<String, Object> dataSourceMap = new HashMap<String, Object>();
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
+		Order order = orderService.loadOrder(orderId);
 
-		parameterMap.put(Constants.ORDER_NO, "Order Number 123");
-		parameterMap.put(Constants.CUSTOMER_NO, "Customer Number 123");
-		parameterMap.put(Constants.CUSTOMER_NAME, "Customer Name 123");
-		parameterMap.put(Constants.CUSTOMER_ADDRESS, "Customer Address 123");
-		parameterMap.put(Constants.CUSTOMER_CONTACT, "Customer Contact 123");
-		parameterMap.put(Constants.CUSTOMER_PHONE, "Customer Phone 123");
-		parameterMap.put(Constants.ORDER_DATE, "Order Date 123");
-		parameterMap.put(Constants.DELIVERY_DATE, "Delivery Date 123");
-		parameterMap.put(Constants.SALES_NAME, "Sales Name 123");
+		parameterMap.put(Constants.ORDER_NO, (order.getOrderNumber()!=null&&!"".equals(order.getOrderNumber()))?order.getOrderNumber():"");
+		parameterMap.put(Constants.CUSTOMER_PO_NO, "");
+		parameterMap.put(Constants.CUSTOMER_NO, (order.getCustomer().getCustomerNumber()!=null&&!"".equals(order.getCustomer().getCustomerNumber()))?order.getCustomer().getCustomerNumber():"");
+		parameterMap.put(Constants.CUSTOMER_NAME, (order.getCustomer().getCustomerName()!=null&&!"".equals(order.getCustomer().getCustomerName()))?order.getCustomer().getCustomerName():"");
+		parameterMap.put(Constants.CUSTOMER_ADDRESS, (order.getCustomer().getCustomerAddress()!=null&&!"".equals(order.getCustomer().getCustomerAddress()))?order.getCustomer().getCustomerAddress():"");
+		parameterMap.put(Constants.CUSTOMER_CONTACT, (order.getCustomer().getCustomerContact()!=null&&!"".equals(order.getCustomer().getCustomerContact()))?order.getCustomer().getCustomerContact():"");
+		parameterMap.put(Constants.CUSTOMER_PHONE, (order.getCustomer().getCustomerPhone()!=null&&!"".equals(order.getCustomer().getCustomerPhone()))?order.getCustomer().getCustomerPhone():"");
+		parameterMap.put(Constants.ORDER_DATE, Constants.invoice_sdf.format(order.getOrderDate()));
+		parameterMap.put(Constants.DELIVERY_DATE, Constants.invoice_sdf.format(order.getDeliveryDate()));
+		parameterMap.put(Constants.SALES_NAME, (order.getCustomer().getSales().getSalesName()!=null&&!"".equals(order.getCustomer().getSales().getSalesName()))?order.getCustomer().getSales().getSalesName():"");
+		parameterMap.put(Constants.REMARKS, (order.getRemarks()!=null&&!"".equals(order.getRemarks()))?order.getRemarks():"");
 		List parameterList = new ArrayList();
 		parameterList.add(parameterMap);
+		List bookingList = bookingService.getBookingList(order);
+		for (Iterator<Booking> bookingItr = bookingList.iterator(); bookingItr.hasNext();) {
+			Map<String, Object> productMap = new HashMap<String, Object>();
+			Booking booking = bookingItr.next();
+			productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
+			productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
+			productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
+			productMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
+			productMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
+			productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
+			productMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
+			productMap.put(Constants.TOTAL_AMOUNT, String.valueOf(booking.getBookingPrice()));
+			parameterList.add(productMap);
+		}
 
-		//JRMapCollectionDataSource dataSource = new JRMapCollectionDataSource((Collection) parameterMap);
 		JRDataSource dataSource = new JRMapCollectionDataSource(parameterList);
 		dataSourceMap.put("datasource", dataSource);
 		modelAndView = new ModelAndView("pdfReport", dataSourceMap);
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.GET , value = "xls")
-	public ModelAndView generateExcelReport(ModelAndView modelAndView) {
+	@RequestMapping(method = RequestMethod.GET , value = "/{orderId}/xls")
+	public ModelAndView generateExcelReport(@PathVariable("orderId") String orderId, ModelAndView modelAndView) {
 		logger.debug("--------------generate Excel report----------");
 		Map<String, Object> dataSourceMap = new HashMap<String, Object>();
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
+		Order order = orderService.loadOrder(orderId);
 
-		parameterMap.put(Constants.ORDER_NO, "Order Number 123");
-		parameterMap.put(Constants.CUSTOMER_NO, "Customer Number 123");
-		parameterMap.put(Constants.CUSTOMER_NAME, "Customer Name 123");
-		parameterMap.put(Constants.CUSTOMER_ADDRESS, "Customer Address 123");
-		parameterMap.put(Constants.CUSTOMER_CONTACT, "Customer Contact 123");
-		parameterMap.put(Constants.CUSTOMER_PHONE, "Customer Phone 123");
-		parameterMap.put(Constants.ORDER_DATE, "Order Date 123");
-		parameterMap.put(Constants.DELIVERY_DATE, "Delivery Date 123");
-		parameterMap.put(Constants.SALES_NAME, "Sales Name 123");
+		parameterMap.put(Constants.ORDER_NO, (order.getOrderNumber()!=null&&!"".equals(order.getOrderNumber()))?order.getOrderNumber():"");
+		parameterMap.put(Constants.CUSTOMER_PO_NO, "");
+		parameterMap.put(Constants.CUSTOMER_NO, (order.getCustomer().getCustomerNumber()!=null&&!"".equals(order.getCustomer().getCustomerNumber()))?order.getCustomer().getCustomerNumber():"");
+		parameterMap.put(Constants.CUSTOMER_NAME, (order.getCustomer().getCustomerName()!=null&&!"".equals(order.getCustomer().getCustomerName()))?order.getCustomer().getCustomerName():"");
+		parameterMap.put(Constants.CUSTOMER_ADDRESS, (order.getCustomer().getCustomerAddress()!=null&&!"".equals(order.getCustomer().getCustomerAddress()))?order.getCustomer().getCustomerAddress():"");
+		parameterMap.put(Constants.CUSTOMER_CONTACT, (order.getCustomer().getCustomerContact()!=null&&!"".equals(order.getCustomer().getCustomerContact()))?order.getCustomer().getCustomerContact():"");
+		parameterMap.put(Constants.CUSTOMER_PHONE, (order.getCustomer().getCustomerPhone()!=null&&!"".equals(order.getCustomer().getCustomerPhone()))?order.getCustomer().getCustomerPhone():"");
+		parameterMap.put(Constants.ORDER_DATE, Constants.invoice_sdf.format(order.getOrderDate()));
+		parameterMap.put(Constants.DELIVERY_DATE, Constants.invoice_sdf.format(order.getDeliveryDate()));
+		parameterMap.put(Constants.SALES_NAME, (order.getCustomer().getSales().getSalesName()!=null&&!"".equals(order.getCustomer().getSales().getSalesName()))?order.getCustomer().getSales().getSalesName():"");
+		parameterMap.put(Constants.REMARKS, (order.getRemarks()!=null&&!"".equals(order.getRemarks()))?order.getRemarks():"");
 		List parameterList = new ArrayList();
 		parameterList.add(parameterMap);
+		List bookingList = bookingService.getBookingList(order);
+		for (Iterator<Booking> bookingItr = bookingList.iterator(); bookingItr.hasNext();) {
+			Map<String, Object> productMap = new HashMap<String, Object>();
+			Booking booking = bookingItr.next();
+			productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
+			productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
+			productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
+			productMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
+			productMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
+			productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
+			productMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
+			productMap.put(Constants.TOTAL_AMOUNT, String.valueOf(booking.getBookingPrice()));
+			parameterList.add(productMap);
+		}
 
-		//JRMapCollectionDataSource dataSource = new JRMapCollectionDataSource((Collection) parameterMap);
 		JRDataSource dataSource = new JRMapCollectionDataSource(parameterList);
 		dataSourceMap.put("datasource", dataSource);
 		modelAndView = new ModelAndView("xlsReport", dataSourceMap);

@@ -3,9 +3,12 @@
 <hibernate-mapping auto-import="true" default-lazy="false">
 	<class name="com.erp.china.demo.model.Product" table="tproduct">
 		<id	name="productId" type="java.lang.String" column="product_id" length="25" />
+		<property name="productType" type="java.lang.String" column="product_type" not-null="true" length="5" />
+		<property name="productCode" type="java.lang.String" column="product_code" not-null="true" length="25" />
 		<property name="productName" type="java.lang.String" column="product_name" not-null="true" length="50" />
 		<property name="productDesc" type="java.lang.String" column="product_desc" not-null="false" length="150" />
 		<property name="productYear" type="java.lang.String" column="product_year" not-null="false" length="4" />
+		<property name="productCountry" type="java.lang.String" column="product_country" not-null="false" length="50" />
 		<property name="productPrice" type="java.lang.Double" column="product_price" not-null="false" />
 		<property name="productPrice2" type="java.lang.Double" column="product_price_2" not-null="false" />
 		<property name="productQty" type="java.lang.Integer" column="product_qty" not-null="false" />

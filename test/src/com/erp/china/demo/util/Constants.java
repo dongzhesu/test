@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
  */
 public class Constants {
 	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	public static final SimpleDateFormat invoice_sdf = new SimpleDateFormat("yyyy/MMM/dd");
 
 	public static final String SELECTED = "selected";
 	public static final String CUST_TYPE = "cust_type";
@@ -28,6 +29,7 @@ public class Constants {
 	public static final String LAST_MODIFIED_DATE = "lastModifiedDate";
 
 	public static final String ORDER_NO = "ORDER_NO";
+	public static final String CUSTOMER_PO_NO = "CUSTOMER_PO_NO";
 	public static final String CUSTOMER_NO = "CUSTOMER_NO";
 	public static final String CUSTOMER_NAME = "CUSTOMER_NAME";
 	public static final String CUSTOMER_ADDRESS = "CUSTOMER_ADDRESS";
@@ -36,7 +38,9 @@ public class Constants {
 	public static final String ORDER_DATE = "ORDER_DATE";
 	public static final String DELIVERY_DATE = "DELIVERY_DATE";
 	public static final String SALES_NAME = "SALES_NAME";
+	public static final String REMARKS = "REMARKS";
 
+	public static final String PRODUCT_CODE = "PRODUCT_CODE";
 	public static final String PRODUCT_NAME = "PRODUCT_NAME";
 	public static final String PRODUCT_DESC = "PRODUCT_DESC";
 	public static final String PRODUCT_YEAR = "PRODUCT_YEAR";

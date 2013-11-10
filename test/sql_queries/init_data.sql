@@ -12,6 +12,7 @@ insert into tstorage(storage_id, storage_name, storage_desc, storage_create_time
 insert into tsales(sales_id, sales_name, sales_email, sales_phone, sales_create_time, sales_last_modified_time) values ('S001', 'Salesman A', 'sales_A001@erp.com', '123455678', now(), now());
 
 insert into tproduct(product_id, product_name, product_desc, product_year, product_price, product_price_2, product_qty, product_create_time, product_last_modified_time) values ('P001', 'Product Wine A', 'Product Wine A Desc', '1988', 1500, 1800, 888, now(), now());
+insert into tproduct(product_id, product_name, product_desc, product_year, product_price, product_price_2, product_qty, product_create_time, product_last_modified_time) values ('P002', 'Product Wine B', 'Product Wine B Desc', '1985', 1200, 1100, 777, now(), now());
 
 insert into tcustomer(customer_id, sales_id, customer_name, customer_type, payment_type, customer_contact, customer_phone, customer_fax, customer_email, customer_address, customer_create_time, customer_last_modified_time)
 values ('C001', 'S001', 'Customer A', 'P', 'Cash', 'Contact Customer A', '12345678', '12345678', 'customer_A001@erp.com', 'HK', now(), now());

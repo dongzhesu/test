@@ -13,6 +13,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.erp.china.demo.model.Booking;
 import com.erp.china.demo.model.BookingKey;
+import com.erp.china.demo.model.Order;
 
 public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 	private static SessionFactory sessionFactory;
@@ -40,6 +41,14 @@ public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		List bookingList = session.createQuery("from Booking").list();
+		if (bookingList == null) bookingList = new ArrayList();
+		return bookingList;
+	}
+
+	public List<Booking> bookingList(Order order) {
+		Session session = getCurrentSession(sessionFactory);
+		Transaction tx = session.beginTransaction();
+		List bookingList = session.createQuery("from Booking where order_id = '"+order.getOrderId()+"'").list();
 		if (bookingList == null) bookingList = new ArrayList();
 		return bookingList;
 	}

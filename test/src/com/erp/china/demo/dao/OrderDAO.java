@@ -7,6 +7,6 @@ public interface OrderDAO {
 	public String createOrder(Order order);
 	public List<Order> orderList();
 	public Order loadOrder(String orderId);
-	public String updateOrder(Order order);
+	public void updateOrder(Order order);
 	public void removeOrder(String orderId);
 }

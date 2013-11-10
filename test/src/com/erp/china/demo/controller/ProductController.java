@@ -102,8 +102,11 @@ public class ProductController {
 			Map<String, String> entityMap = new HashMap<String, String>();
 			logger.debug("name:"+product.getProductName()+"; year: "+product.getProductYear());
 			entityMap.put("product_id", product.getProductId());
+			entityMap.put("product_type", product.getProductType());
+			entityMap.put("product_code", product.getProductCode());
 			entityMap.put("product_name", product.getProductName());
 			entityMap.put("product_year", product.getProductYear());
+			entityMap.put("product_country", product.getProductCountry());
 			entityMap.put("product_price", Double.toString(product.getProductPrice()));
 			entityMap.put("product_price2", Double.toString(product.getProductPrice2()));
 			entityMap.put("product_qty", Integer.toString(product.getProductQty()));
@@ -127,6 +130,7 @@ public class ProductController {
 	public @ResponseBody Map update(@RequestBody Map requestMap) {
 		Product entity = new Product();
 		entity.setProductId(requestMap.get("product_id")!=null?requestMap.get("product_id").toString():"");
+		entity.setProductName(requestMap.get("product_code")!=null?requestMap.get("product_code").toString():"");
 		entity.setProductName(requestMap.get("product_name")!=null?requestMap.get("product_name").toString():"");
 		entity.setProductYear(requestMap.get("product_year")!=null?requestMap.get("product_year").toString():"");
 		entity.setProductPrice(requestMap.get("product_price")!=null?Double.parseDouble(requestMap.get("product_price").toString()):0);
