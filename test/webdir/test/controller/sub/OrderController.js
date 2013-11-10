@@ -65,16 +65,17 @@ Ext.define('Test.controller.sub.OrderController', {
 		if(selection && selection.length>0){
 			var order_id = selection[0].get('order_id');
 			console.log(order_id);
-			Ext.Ajax.request({
-				url: 'http://localhost:8080/ERP_demo/OD/pdf.html',
-				method:'POST',
-				params: {order_id: order_id},
-				success: function (response){
-					var serverResponse = response.responseText;
-					console.log(serverResponse);
-				}
-			
-			});
+			window.open('/ERP_demo/OD/pdf.html');
+//			Ext.Ajax.request({
+//				url: 'http://localhost:8080/ERP_demo/OD/pdf.html',
+//				method:'GET',
+//				params: {order_id: order_id},
+//				success: function (response){
+//					var serverResponse = response.responseText;
+//					console.log(serverResponse);
+//				}
+//			
+//			});
 			}
 		else{
 			Ext.MessageBox.show({

@@ -143,35 +143,34 @@ Ext.define('Test.view.edit.Order', {
 			defaults:{anchor:'100%'},
 			layout:'anchor',
 			items:[
+//			       {
+//						xtype: 'combo',
+//						name : 'product_id',
+//						fieldLabel: 'Product Name',
+//						editable: false,
+//						emptyText: 'Please select',
+//						store: Ext.create('Test.store.Products'),
+//						valueField: 'product_id',
+//						displayField: 'product_name',
+//						allowBlank: false,
+//						listeners:{
+//							expand: function(c){
+//								this.store.load();
+//							}
+//						}
+//					},
 			       {
 						xtype: 'combo',
 						name : 'product_id',
 						fieldLabel: 'Product Name',
-						editable: false,
-						emptyText: 'Please select',
-						store: Ext.create('Test.store.Products'),
-						valueField: 'product_id',
+			    		emptyText: 'Please select',
 						displayField: 'product_name',
-						allowBlank: false,
-						listeners:{
-							expand: function(c){
-								this.store.load();
-							}
-						}
+						store: Ext.create('Test.store.Products').load(),
+						valueField: 'product_id',
+						queryMode: 'local',
+						typeAhead: true,
+						allowBlank: false
 					},
-//			       {
-//						xtype: 'combo',
-//						renderTo: 'customTplCombo',
-//						displayField: 'product_name',
-//						fieldLabel: 'Product Name',
-//						store: Ext.create('Test.store.Products'),
-//						valueField: 'product_id',
-//						queryMode: 'local',
-//						getInnerTpl: function(){
-//							return '<div data-qtip="{product_name}">{product_name}</div>';
-//						},
-//						allowBlank: false
-//					},
 					{
 						xtype: 'textfield',
 						name : 'booking_price',

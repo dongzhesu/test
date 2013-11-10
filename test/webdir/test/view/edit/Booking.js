@@ -25,22 +25,35 @@ Ext.define('Test.view.edit.Booking', {
 			    	}
 			    }
 			},
+//			{
+//			    xtype: 'combo',
+//			    name : 'product_id',
+//			    fieldLabel: 'Product Name',
+//			    editable: false,
+//			    emptyText: 'Please select',
+//			    store: Ext.create('Test.store.Products'),
+//			    valueField: 'product_id',
+//			    displayField: 'product_name',
+//			    allowBlank: false,
+//			    
+//			    listeners:{
+//			    	expand: function(c){
+//			    		this.store.load();
+//			    	}
+//			    }
+//			},
 			{
 			    xtype: 'combo',
 			    name : 'product_id',
 			    fieldLabel: 'Product Name',
-			    editable: false,
 			    emptyText: 'Please select',
-			    store: Ext.create('Test.store.Products'),
-			    valueField: 'product_id',
 			    displayField: 'product_name',
-			    allowBlank: false,
+			    store: Ext.create('Test.store.Products').load(),
+			    queryMode: 'local',
+			    typeAhead: true,
+			    valueField: 'product_id',
+			    allowBlank: false
 			    
-			    listeners:{
-			    	expand: function(c){
-			    		this.store.load();
-			    	}
-			    }
 			},
             {
                 xtype: 'textfield',
