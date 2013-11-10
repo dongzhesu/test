@@ -1,0 +1,7 @@
+{
+    "success": true,
+    "stats": [
+        {"Name": 'Shang Hai', "Location": 'Shang Hai East'},
+        {"Name": 'Hong Kong', "Location": 'Clear Water Bay Hong Kong'}        
+    ]
+}

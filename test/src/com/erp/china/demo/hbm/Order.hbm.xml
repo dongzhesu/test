@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-lazy="false">
+	<class name="com.erp.china.demo.model.Order" table="torder">
+		<id	name="orderId" type="java.lang.String" column="order_id" length="25" />
+		<property name="orderNumber" type="java.lang.String" column="order_number" not-null="true" length="50" />
+		<property name="orderPrice" type="java.lang.Double" column="order_price" not-null="false" />
+		<property name="orderDate" type="java.util.Date" column="order_date" not-null="false" />
+		<property name="createdDate" type="java.util.Date" column="order_create_time" not-null="true" />
+		<property name="lastModifiedDate" type="java.util.Date" column="order_last_modified_time" not-null="true" />
+		<many-to-one name="customer" column="customer_id" class="com.erp.china.demo.model.Customer" not-null="true" />
+	</class>
+</hibernate-mapping>

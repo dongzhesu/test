@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-lazy="false">
+	<class name="com.erp.china.demo.model.Sales" table="tsales">
+		<id	name="salesId" type="java.lang.String" column="sales_id" length="25" />
+		<property name="salesName" type="java.lang.String" column="sales_name" not-null="true" length="150" />
+		<property name="salesEmail" type="java.lang.String" column="sales_email" not-null="false" length="100" />
+		<property name="salesPhone" type="java.lang.String" column="sales_phone" not-null="false" length="50" />
+		<property name="createdDate" type="java.util.Date" column="sales_create_time" not-null="true" />
+		<property name="lastModifiedDate" type="java.util.Date" column="sales_last_modified_time" not-null="true" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,8 @@
+.order_date:hover {
+  cursor: text;
+  background-color: #add8e6;
+}
+
+.order_date input {
+  width: 86px;
+}

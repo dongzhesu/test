@@ -1,0 +1,8 @@
+{
+    "success": true,
+    "stats": [
+        {"Name": 'Andy', "Email": 'andy@winestore.com',    "Phone": "98765432"},
+        {"Name": 'Micky', "Email": 'micky@winestore.com',    "Phone": "88559898"},
+        {"Name": 'Hello Kitty', "Email": 'kitty@winestore.com',    "Phone": "13512345678"}
+    ]
+}

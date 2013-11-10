@@ -1,0 +1,10 @@
+{
+    "success": true,
+    "stats": [
+        {"Product": 'UK Red Wine', "Qty": '20',    "Order": "001",    "Unitprice": '500',    "Totalprice": '10000'},
+        {"Product": 'France Red Wine', "Qty": '30',    "Order": "002",    "Unitprice": '1000',    "Totalprice": '30000'},
+        {"Product": 'Hong Kong Red Wine', "Qty": '50',    "Order": "003",    "Unitprice": '100',    "Totalprice": '5000'},
+        {"Product": 'US Red Wine', "Qty": '10',    "Order": "004",    "Unitprice": '100',    "Totalprice": '1000'},
+        {"Product": 'Hong Kong Red Wine', "Qty": '200',    "Order": "005",    "Unitprice": '200',    "Totalprice": '40000'}
+    ]
+}

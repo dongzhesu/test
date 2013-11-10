@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-lazy="false">
+	<class name="com.erp.china.demo.model.Lookup" table="tlookup">
+		<id	name="lookupId" type="java.lang.String" column="lookup_id" length="25" />
+		<property name="lookupKey" type="java.lang.String" column="lookup_key" unique="true" not-null="true" length="50" />
+		<property name="lookupValue" type="java.lang.String" column="lookup_value" not-null="true" length="50" />
+		<many-to-one name="system" column="system_id" class="com.erp.china.demo.model.System" not-null="true" />
+	</class>
+</hibernate-mapping>

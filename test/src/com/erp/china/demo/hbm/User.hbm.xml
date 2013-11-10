@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-lazy="false">
+	<class name="com.erp.china.demo.model.User" table="tuser">
+		<id	name="userId" type="java.lang.String" column="tuid" length="25" />
+		<property name="userLogin" type="java.lang.String" column="user_login" unique="true" not-null="true" length="50" />
+		<property name="userPassword" type="java.lang.String" column="user_password" not-null="true" length="50" />
+		<property name="userLanguage" type="java.lang.String" column="user_language" not-null="false" length="20" />
+		<property name="createdDate" type="java.util.Date" column="user_create_time" not-null="true" />
+		<property name="lastModifiedDate" type="java.util.Date" column="user_last_modified_time" not-null="true" />
+		<many-to-one name="system" column="system_id" class="com.erp.china.demo.model.System" not-null="true" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoice" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.853116706110006"/>
+	<property name="ireport.x" value="190"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<field name="ORDER_NO" class="java.lang.String"/>
+	<field name="CUSTOMER_NO" class="java.lang.String"/>
+	<field name="CUSTOMER_NAME" class="java.lang.String"/>
+	<field name="CUSTOMER_ADDRESS" class="java.lang.String"/>
+	<field name="CUSTOMER_CONTACT" class="java.lang.String"/>
+	<field name="CUSTOMER_PHONE" class="java.lang.String"/>
+	<field name="ORDER_DATE" class="java.lang.String"/>
+	<field name="DELIVERY_DATE" class="java.lang.String"/>
+	<field name="SALES_NAME" class="java.lang.String"/>
+	<field name="PRODUCT_NAME" class="java.lang.String"/>
+	<field name="PRODUCT_DESC" class="java.lang.String"/>
+	<field name="PRODUCT_YEAR" class="java.lang.String"/>
+	<field name="UNIT_PRICE" class="java.lang.String"/>
+	<field name="PRODUCT_PRICE" class="java.lang.String"/>
+	<field name="DISCOUNT" class="java.lang.String"/>
+	<field name="BOOKING_QTY" class="java.lang.String"/>
+	<field name="TOTAL_AMOUNT" class="java.lang.String"/>
+	<group name="Group1">
+		<groupHeader>
+			<band height="160">
+				<staticText>
+					<reportElement style="Column header" x="7" y="30" width="106" height="15" forecolor="#736343"/>
+					<textElement>
+						<font pdfEncoding="UTF-8"/>
+					</textElement>
+					<text><![CDATA[Customer PO. No]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="7" y="46" width="106" height="15" forecolor="#736343"/>
+					<textElement/>
+					<text><![CDATA[Customer Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="7" y="7" width="146" height="22"/>
+					<textElement>
+						<font fontName="Times New Roman" size="14" isBold="true" pdfFontName="Times-Roman"/>
+					</textElement>
+					<text><![CDATA[Customer Information]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Column header" x="295" y="30" width="260" height="15" forecolor="#736343"/>
+					<textElement markup="none"/>
+					<textFieldExpression><![CDATA["Customer No   "+$F{CUSTOMER_NO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="7" y="62" width="106" height="15" forecolor="#736343"/>
+					<textElement/>
+					<text><![CDATA[Delivery Address]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Column header" x="115" y="30" width="164" height="15" forecolor="#736343"/>
+					<textElement markup="none"/>
+					<textFieldExpression><![CDATA[$F{ORDER_NO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="115" y="46" width="440" height="15" forecolor="#736343"/>
+					<textElement markup="none"/>
+					<textFieldExpression><![CDATA[$F{CUSTOMER_NAME}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="115" y="62" width="440" height="15" forecolor="#736343"/>
+					<textElement markup="none"/>
+					<textFieldExpression><![CDATA[$F{CUSTOMER_ADDRESS}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="7" y="78" width="106" height="15" forecolor="#736343"/>
+					<textElement/>
+					<text><![CDATA[Contact Person]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="7" y="94" width="106" height="15" forecolor="#736343"/>
+					<textElement/>
+					<text><![CDATA[Order Date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="7" y="110" width="106" height="15" forecolor="#736343"/>
+					<textElement/>
+					<text><![CDATA[Credit]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="295" y="78" width="81" height="15" forecolor="#736343"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[Telp No.]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Column header" x="115" y="78" width="175" height="15" forecolor="#736343"/>
+					<textElement markup="none"/>
+					<textFieldExpression><![CDATA[$F{CUSTOMER_CONTACT}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="379" y="78" width="176" height="15" forecolor="#736343"/>
+					<textElement markup="none"/>
+					<textFieldExpression><![CDATA[$F{CUSTOMER_PHONE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="295" y="95" width="81" height="15" forecolor="#736343"/>
+					<textElement/>
+					<text><![CDATA[Delivery Date]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Column header" x="115" y="94" width="175" height="15" forecolor="#736343"/>
+					<textElement markup="none"/>
+					<textFieldExpression><![CDATA[$F{ORDER_DATE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="379" y="95" width="176" height="15" forecolor="#736343"/>
+					<textElement markup="none"/>
+					<textFieldExpression><![CDATA[$F{DELIVERY_DATE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="7" y="126" width="106" height="15" forecolor="#736343"/>
+					<textElement/>
+					<text><![CDATA[Sales Rep.
+]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="217" y="111" width="12" height="12"/>
+				</rectangle>
+				<staticText>
+					<reportElement style="Column header" x="115" y="110" width="100" height="15" forecolor="#736343"/>
+					<textElement/>
+					<text><![CDATA[Cash On Delivery]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="254" y="110" width="70" height="15" forecolor="#736343"/>
+					<textElement/>
+					<text><![CDATA[Net 30 Days]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="326" y="111" width="12" height="12"/>
+				</rectangle>
+				<staticText>
+					<reportElement style="Column header" x="362" y="110" width="48" height="15" forecolor="#736343"/>
+					<textElement/>
+					<text><![CDATA[Others:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="7" y="143" width="120" height="15" forecolor="#736343"/>
+					<textElement/>
+					<text><![CDATA[Delivery Instruction]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Column header" x="115" y="126" width="440" height="15" forecolor="#736343"/>
+					<textElement markup="none"/>
+					<textFieldExpression><![CDATA[$F{SALES_NAME}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupHeader>
+			<band height="30">
+				<staticText>
+					<reportElement style="SubTitle" x="8" y="5" width="67" height="20"/>
+					<textElement markup="none">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Item Code]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="80" y="5" width="101" height="20"/>
+					<textElement textAlignment="Center" markup="none">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="185" y="5" width="44" height="20"/>
+					<textElement textAlignment="Center" markup="none">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Vintage]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="234" y="3" width="62" height="25"/>
+					<textElement textAlignment="Center" markup="none">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Listed price per bottle]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="301" y="5" width="59" height="20"/>
+					<textElement textAlignment="Center" markup="none">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Discount]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="365" y="2" width="62" height="25"/>
+					<textElement textAlignment="Center" markup="none">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Price per bottle]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="432" y="4" width="59" height="20"/>
+					<textElement textAlignment="Center" markup="none">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Qty (bot)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="496" y="3" width="56" height="24"/>
+					<textElement textAlignment="Center" markup="none">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total Amount]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="146" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="154" y="0" width="184" height="34"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" pdfFontName="C:/Windows/Fonts/ARIAL.ttf" pdfEncoding="UTF-8" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[鎬�瀵�閰�妤紙棣�娓級鏈�闄�鍏�鍙竇]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="8" y="40" width="103" height="22"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Supplier Info.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="121" y="40" width="364" height="22"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[ELBRO WINE ( HONG KONG ) LIMITED]]></text>
+			</staticText>
+			<image>
+				<reportElement x="6" y="6" width="137" height="28"/>
+				<imageExpression><![CDATA["C:/Users/Administrator/Desktop/ERP/ERP_demo/webdir/WEB-INF/template/logo_elbrowine.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="SubTitle" x="121" y="67" width="434" height="22"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[2/F Kong Ling Building, 102 Jervois Street, Sheung Wan, Hong Kong
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="121" y="93" width="434" height="22"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Tel: +852 2851 6344      Fax: +852 2543 5110
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="121" y="120" width="434" height="22"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[info@elbrowine.com    http://www.elbrowine.com
+]]></text>
+			</staticText>
+			<image>
+				<reportElement x="8" y="68" width="105" height="66"/>
+				<imageExpression><![CDATA["C:/Users/Administrator/Desktop/ERP/ERP_demo/webdir/WEB-INF/template/wine.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="4" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="SubTitle" x="6" y="9" width="64" height="22"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true" isUnderline="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[INVOICE]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="33" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="SubTitle" x="75" y="10" width="204" height="22"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" size="14" isBold="true" pdfFontName="Times-Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA["NO: "+$F{ORDER_NO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="8" y="7" width="67" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PRODUCT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="80" y="7" width="101" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PRODUCT_DESC}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="185" y="7" width="44" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PRODUCT_YEAR}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="234" y="7" width="61" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{UNIT_PRICE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="365" y="7" width="62" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{PRODUCT_PRICE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="301" y="7" width="59" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{DISCOUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="434" y="7" width="57" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{BOOKING_QTY}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="498" y="7" width="54" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{TOTAL_AMOUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="9" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

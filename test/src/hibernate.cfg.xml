@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">org.postgresql.Driver</property>
+		<property name="connection.url">jdbc:postgresql://127.0.0.1:5432/erp_01</property>
+		<property name="connection.username">dongzhe</property>
+		<property name="connection.password">12345678</property>
+		<property name="connection.pool_size">10</property>
+		<property name="show_sql">true</property>
+		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hbm2ddl.auto">update</property>
+		<property name="current_session_context_class">thread</property>
+		<!-- Mapping files -->
+		<mapping resource="/com/erp/china/demo/hbm/Product.hbm.xml"/>
+		<mapping resource="/com/erp/china/demo/hbm/Sales.hbm.xml"/>
+		<mapping resource="/com/erp/china/demo/hbm/Storage.hbm.xml"/>
+		<mapping resource="/com/erp/china/demo/hbm/Customer.hbm.xml"/>
+		<mapping resource="/com/erp/china/demo/hbm/Order.hbm.xml"/>
+		<mapping resource="/com/erp/china/demo/hbm/Booking.hbm.xml"/>
+		<mapping resource="/com/erp/china/demo/hbm/System.hbm.xml"/>
+		<mapping resource="/com/erp/china/demo/hbm/User.hbm.xml"/>
+		<mapping resource="/com/erp/china/demo/hbm/Lookup.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>

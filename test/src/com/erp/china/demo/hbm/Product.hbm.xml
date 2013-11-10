@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-lazy="false">
+	<class name="com.erp.china.demo.model.Product" table="tproduct">
+		<id	name="productId" type="java.lang.String" column="product_id" length="25" />
+		<property name="productName" type="java.lang.String" column="product_name" not-null="true" length="50" />
+		<property name="productDesc" type="java.lang.String" column="product_desc" not-null="false" length="150" />
+		<property name="productYear" type="java.lang.String" column="product_year" not-null="false" length="4" />
+		<property name="productPrice" type="java.lang.Double" column="product_price" not-null="false" />
+		<property name="productPrice2" type="java.lang.Double" column="product_price_2" not-null="false" />
+		<property name="productQty" type="java.lang.Integer" column="product_qty" not-null="false" />
+		<property name="createdDate" type="java.util.Date" column="product_create_time" not-null="true" />
+		<property name="lastModifiedDate" type="java.util.Date" column="product_last_modified_time" not-null="true" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,8 @@
+{
+    "success": true,
+    "stats": [
+        {"Customer": 'West Lake', "Price": '200000',    "Date": '2013-08-25'},
+        {"Customer": 'Hello', "Price": '30000',    "Date": '2013-07-29'},
+        {"Customer": 'Hong Kong Red Wine Store', "Price": '50000',    "Date": '2013-08-19'}
+    ]
+}

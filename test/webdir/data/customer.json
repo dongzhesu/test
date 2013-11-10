@@ -1,0 +1,10 @@
+{
+    "success": true,
+    "stats": [
+        {"Name": 'West Lake', "Sales": 'Micky',    "Type": 'Normal',    "Contact": 'Marry',    "Phone": '9234567',    "Fax": '9234567',    "Email": '123',    "Address": '123'},
+        {"Name": 'Lees', "Sales": 'Kitty',    "Type": 'Normal',    "Contact": 'Lee',    "Phone": '6561567',    "Fax": '6561567',    "Email": '123',    "Address": '123'},
+        {"Name": 'Big Pack', "Sales": 'Micky',    "Type": 'VIP',    "Contact": 'Bach',    "Phone": '989810561',    "Fax": '989810561',    "Email": '123',    "Address": '123'},
+        {"Name": 'Brand', "Sales": 'Andy',    "Type": 'VIP',    "Contact": 'Brand',    "Phone": '84949823',    "Fax": '84949823',    "Email": '123',    "Address": '123'},
+        {"Name": 'Wood', "Sales": 'Micky',    "Type": 'Normal',    "Contact": 'Wood',    "Phone": '13056825568',    "Fax": '55687985',    "Email": '123',    "Address": '123'}
+    ]
+}
