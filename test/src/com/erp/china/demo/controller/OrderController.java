@@ -186,6 +186,9 @@ public class OrderController {
 		entity.setOrderId(requestMap.get("order_id")!=null?requestMap.get("order_id").toString():"");
 		entity.setOrderNumber(requestMap.get("order_number")!=null?requestMap.get("order_number").toString():"");
 		entity.setOrderPrice(requestMap.get("order_price")!=null?Double.parseDouble(requestMap.get("order_price").toString()):0);
+		entity.setOrderType(requestMap.get("order_type")!=null?requestMap.get("order_type").toString():"");
+		entity.setRemarks(requestMap.get("remarks")!=null?requestMap.get("remarks").toString():"");
+		entity.setDeliveryDate(new Date());
 		entity.setOrderDate(new Date());
 		orderService.updateOrder(entity);
 		Map resultMap = new HashMap();
@@ -200,6 +203,9 @@ public class OrderController {
 		entity.setCustomer(customer);
 		entity.setOrderNumber(requestMap.get("order_number")!=null?requestMap.get("order_number").toString():"");
 		entity.setOrderPrice(requestMap.get("order_price")!=null?Double.parseDouble(requestMap.get("order_price").toString()):0);
+		entity.setOrderType(requestMap.get("order_type")!=null?requestMap.get("order_type").toString():"");
+		entity.setRemarks(requestMap.get("remarks")!=null?requestMap.get("remarks").toString():"");
+		entity.setDeliveryDate(new Date());
 		entity.setOrderDate(new Date());
 		String orderId = orderService.createOrder(entity);
 		Map resultMap = new HashMap();

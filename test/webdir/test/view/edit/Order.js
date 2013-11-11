@@ -46,8 +46,19 @@ Ext.define('Test.view.edit.Order', {
 						},
 						{
 							xtype: 'textfield',
+							name : 'order_type',
+							fieldLabel: 'Order Type',
+							allowBlank: false
+						},
+						{
+							xtype: 'textfield',
 							name : 'order_price',
 							fieldLabel: 'Order Price'
+						},
+						{
+							xtype: 'textfield',
+							name : 'remarks',
+							fieldLabel: 'Remarks'
 						}
 						]			
 				}

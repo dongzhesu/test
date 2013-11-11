@@ -130,7 +130,9 @@ public class ProductController {
 	public @ResponseBody Map update(@RequestBody Map requestMap) {
 		Product entity = new Product();
 		entity.setProductId(requestMap.get("product_id")!=null?requestMap.get("product_id").toString():"");
-		entity.setProductName(requestMap.get("product_code")!=null?requestMap.get("product_code").toString():"");
+		entity.setProductCode(requestMap.get("product_code")!=null?requestMap.get("product_code").toString():"");
+		entity.setProductType(requestMap.get("product_type")!=null?requestMap.get("product_type").toString():"");
+		entity.setProductCountry(requestMap.get("product_country")!=null?requestMap.get("product_country").toString():"");
 		entity.setProductName(requestMap.get("product_name")!=null?requestMap.get("product_name").toString():"");
 		entity.setProductYear(requestMap.get("product_year")!=null?requestMap.get("product_year").toString():"");
 		entity.setProductPrice(requestMap.get("product_price")!=null?Double.parseDouble(requestMap.get("product_price").toString()):0);
@@ -146,6 +148,9 @@ public class ProductController {
 	public @ResponseBody Map create(@RequestBody Map requestMap) {
 		Product entity = new Product();
 		entity.setProductName(requestMap.get("product_name")!=null?requestMap.get("product_name").toString():"");
+		entity.setProductCode(requestMap.get("product_code")!=null?requestMap.get("product_code").toString():"");
+		entity.setProductType(requestMap.get("product_type")!=null?requestMap.get("product_type").toString():"");
+		entity.setProductCountry(requestMap.get("product_country")!=null?requestMap.get("product_country").toString():"");
 		entity.setProductYear(requestMap.get("product_year")!=null?requestMap.get("product_year").toString():"");
 		entity.setProductPrice(requestMap.get("product_price")!=null?Double.parseDouble(requestMap.get("product_price").toString()):0);
 		entity.setProductPrice2(requestMap.get("product_price2")!=null?Double.parseDouble(requestMap.get("product_price2").toString()):0);

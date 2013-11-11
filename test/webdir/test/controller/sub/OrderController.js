@@ -65,7 +65,7 @@ Ext.define('Test.controller.sub.OrderController', {
 		if(selection && selection.length>0){
 			var order_id = selection[0].get('order_id');
 			console.log(order_id);
-			window.open('/ERP_demo/OD/pdf.html');
+			window.open('/ERP_demo/OD/'+order_id+'/pdf.html');
 //			Ext.Ajax.request({
 //				url: 'http://localhost:8080/ERP_demo/OD/pdf.html',
 //				method:'GET',

@@ -2,7 +2,10 @@ Ext.define('Test.model.Product', {
     extend: 'Ext.data.Model',
     
     fields: [
-             {name: 'product_id',  type: 'string'},     
+             {name: 'product_id',  type: 'string'},
+             {name: 'product_code',  type: 'string'},
+             {name: 'product_type',  type: 'string'},
+             {name: 'product_country',  type: 'string'},
              {name: 'product_name',  type: 'string'},
              {name: 'product_year',  type: 'int'},
              {name: 'product_price',  type: 'number'},

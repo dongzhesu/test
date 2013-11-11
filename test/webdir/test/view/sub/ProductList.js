@@ -10,6 +10,24 @@ Ext.define('Test.view.sub.ProductList', {
         flex: 1,
         minWidth: 100
     },  {
+        header: 'Product Code'.i18n(),
+        dataIndex: 'product_code',
+        align: 'center',
+        flex: 1,
+        minWidth: 100
+    },  {
+        header: 'Product Type'.i18n(),
+        dataIndex: 'product_type',
+        align: 'center',
+        flex: 1,
+        minWidth: 100
+    },  {
+        header: 'Product Country'.i18n(),
+        dataIndex: 'product_country',
+        align: 'center',
+        flex: 1,
+        minWidth: 100
+    },  {
         header: 'Year'.i18n(),
         dataIndex: 'product_year',
         align: 'center',

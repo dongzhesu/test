@@ -17,8 +17,22 @@ Ext.define('Test.view.sub.OrderList', {
         minWidth: 100,
         sortable: true
     }, {
+        header: 'Order Type'.i18n(),
+        dataIndex: 'order_type',
+        align: 'center',
+        flex: 1,
+        minWidth: 100,
+        sortable: true
+    }, {
         header: 'Order Price'.i18n(),
         dataIndex: 'order_price',
+        align: 'center',
+        flex: 1,
+        minWidth: 100,
+        sortable: true
+    },{
+        header: 'Remarks'.i18n(),
+        dataIndex: 'remarks',
         align: 'center',
         flex: 1,
         minWidth: 100,
@@ -34,6 +48,14 @@ Ext.define('Test.view.sub.OrderList', {
     },{
         header: 'CreateTime'.i18n(),
         dataIndex: 'createdDate',
+        align: 'center',
+        flex: 1,
+        minWidth: 100,
+        sortable: true,
+        renderer:Ext.util.Format.dateRenderer('m/d/Y')
+    },{
+        header: 'Delivery Time'.i18n(),
+        dataIndex: 'delivery_date',
         align: 'center',
         flex: 1,
         minWidth: 100,

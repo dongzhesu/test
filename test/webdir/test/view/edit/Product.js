@@ -19,6 +19,22 @@ Ext.define('Test.view.edit.Product', {
             },
             {
                 xtype: 'textfield',
+                name : 'product_code',
+                fieldLabel: 'Product Code',
+                allowBlank: false
+            },
+            {
+                xtype: 'textfield',
+                name : 'product_type',
+                fieldLabel: 'Product Type'
+            },
+            {
+                xtype: 'textfield',
+                name : 'product_country',
+                fieldLabel: 'Product Country'
+            },
+            {
+                xtype: 'textfield',
                 name : 'product_year',
                 fieldLabel: 'Year'
             },
