@@ -90,6 +90,14 @@
     background-image: url(../images/pencil.png) !important;
     background-size: 16px 16px;
 }
+.btn-pdf {
+    background-image: url(../images/pdf.png) !important;
+    background-size: 16px 16px;
+}
+.btn-excel {
+    background-image: url(../images/excel.png) !important;
+    background-size: 16px 16px;
+}
 .btn-delete {
     background-image: url(../images/delete.png) !important;
     background-size: 16px 16px;

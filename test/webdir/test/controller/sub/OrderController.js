@@ -20,6 +20,9 @@ Ext.define('Test.controller.sub.OrderController', {
             '#printPDF': {
                 click: this.onPrintPDFClick
             },
+            '#printExcel': {
+                click: this.onPrintExcelClick
+            },
     		'orderEdit button[action=save]': {
     			click: this.updateOrder
     		}
@@ -76,6 +79,24 @@ Ext.define('Test.controller.sub.OrderController', {
 //				}
 //			
 //			});
+			}
+		else{
+			Ext.MessageBox.show({
+	            title: 'Info'.i18n(),
+	            msg: Test.getSelectRemindText('Order'),
+	            buttons: Ext.MessageBox.OK,
+	            icon: Ext.MessageBox.INFO
+	        });
+		}
+    },
+    
+        onPrintExcelClick: function (btn) {
+    	var grid = this.getOrderList().down('grid');
+        var selection = grid.getSelectionModel().getSelection();
+		if(selection && selection.length>0){
+			var order_id = selection[0].get('order_id');
+			console.log(order_id);
+			window.open('/ERP_demo/OD/'+order_id+'/xls.html');
 			}
 		else{
 			Ext.MessageBox.show({
@@ -236,8 +257,13 @@ Ext.define('Test.controller.sub.OrderController', {
               	}),
               	Ext.create('Ext.Action',{
                   	text: 'Print Invoice(PDF)'.i18n(),
-                  	iconCls: 'btn-printpdf',
+                  	iconCls: 'btn-pdf',
           			itemId: 'printPDF'
+              	}),
+              	Ext.create('Ext.Action',{
+                  	text: 'Print Invoice(Excel)'.i18n(),
+                  	iconCls: 'btn-excel',
+          			itemId: 'printExcel'
               	})
               ]
 	
