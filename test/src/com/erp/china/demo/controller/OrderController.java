@@ -245,20 +245,45 @@ public class OrderController {
 		parameterMap.put(Constants.SALES_NAME, (order.getCustomer().getSales().getSalesName()!=null&&!"".equals(order.getCustomer().getSales().getSalesName()))?order.getCustomer().getSales().getSalesName():"");
 		parameterMap.put(Constants.REMARKS, (order.getRemarks()!=null&&!"".equals(order.getRemarks()))?order.getRemarks():"");
 		List parameterList = new ArrayList();
-		parameterList.add(parameterMap);
 		List bookingList = bookingService.getBookingList(order);
+		int i = 0;
 		for (Iterator<Booking> bookingItr = bookingList.iterator(); bookingItr.hasNext();) {
-			Map<String, Object> productMap = new HashMap<String, Object>();
 			Booking booking = bookingItr.next();
-			productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
-			productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
-			productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
-			productMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
-			productMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
-			productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
-			productMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
-			productMap.put(Constants.TOTAL_AMOUNT, String.valueOf(booking.getBookingPrice()));
-			parameterList.add(productMap);
+			if (i == 0) {
+				parameterMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
+				parameterMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
+				parameterMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
+				parameterMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
+				parameterMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
+				parameterMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
+				parameterMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
+				parameterMap.put(Constants.TOTAL_ITEM_AMOUNT, String.valueOf(booking.getBookingPrice()));
+				parameterList.add(parameterMap);
+			} else if (i == (bookingList.size() - 1)) {
+				Map<String, Object> productMap = new HashMap<String, Object>();
+				productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
+				productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
+				productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
+				productMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
+				productMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
+				productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
+				productMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
+				productMap.put(Constants.TOTAL_ITEM_AMOUNT, String.valueOf(booking.getBookingPrice()));
+				productMap.put(Constants.TOTAL_AMOUNT, String.valueOf(order.getOrderPrice()));
+				parameterList.add(productMap);
+			} else {
+				Map<String, Object> productMap = new HashMap<String, Object>();
+				productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
+				productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
+				productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
+				productMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
+				productMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
+				productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
+				productMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
+				productMap.put(Constants.TOTAL_ITEM_AMOUNT, String.valueOf(booking.getBookingPrice()));
+				parameterList.add(productMap);
+			}
+			i++;
 		}
 
 		JRDataSource dataSource = new JRMapCollectionDataSource(parameterList);
@@ -286,20 +311,45 @@ public class OrderController {
 		parameterMap.put(Constants.SALES_NAME, (order.getCustomer().getSales().getSalesName()!=null&&!"".equals(order.getCustomer().getSales().getSalesName()))?order.getCustomer().getSales().getSalesName():"");
 		parameterMap.put(Constants.REMARKS, (order.getRemarks()!=null&&!"".equals(order.getRemarks()))?order.getRemarks():"");
 		List parameterList = new ArrayList();
-		parameterList.add(parameterMap);
 		List bookingList = bookingService.getBookingList(order);
+		int i = 0;
 		for (Iterator<Booking> bookingItr = bookingList.iterator(); bookingItr.hasNext();) {
-			Map<String, Object> productMap = new HashMap<String, Object>();
 			Booking booking = bookingItr.next();
-			productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
-			productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
-			productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
-			productMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
-			productMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
-			productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
-			productMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
-			productMap.put(Constants.TOTAL_AMOUNT, String.valueOf(booking.getBookingPrice()));
-			parameterList.add(productMap);
+			if (i == 0) {
+				parameterMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
+				parameterMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
+				parameterMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
+				parameterMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
+				parameterMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
+				parameterMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
+				parameterMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
+				parameterMap.put(Constants.TOTAL_ITEM_AMOUNT, String.valueOf(booking.getBookingPrice()));
+				parameterList.add(parameterMap);
+			} else if (i == (bookingList.size() - 1)) {
+				Map<String, Object> productMap = new HashMap<String, Object>();
+				productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
+				productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
+				productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
+				productMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
+				productMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
+				productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
+				productMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
+				productMap.put(Constants.TOTAL_ITEM_AMOUNT, String.valueOf(booking.getBookingPrice()));
+				productMap.put(Constants.TOTAL_AMOUNT, String.valueOf(order.getOrderPrice()));
+				parameterList.add(productMap);
+			} else {
+				Map<String, Object> productMap = new HashMap<String, Object>();
+				productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
+				productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
+				productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
+				productMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
+				productMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
+				productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
+				productMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
+				productMap.put(Constants.TOTAL_ITEM_AMOUNT, String.valueOf(booking.getBookingPrice()));
+				parameterList.add(productMap);
+			}
+			i++;
 		}
 
 		JRDataSource dataSource = new JRMapCollectionDataSource(parameterList);
