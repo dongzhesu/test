@@ -35,6 +35,7 @@ create table tcustomer(
 create table torder(
 	order_id                 VARCHAR(25) PRIMARY KEY,
 	customer_id              VARCHAR(25) NOT NULL,
+	order_type               VARCHAR(5),
 	order_number             VARCHAR(50),
 	order_price              NUMERIC(10,2),
 	order_date               TIMESTAMP NULL,
