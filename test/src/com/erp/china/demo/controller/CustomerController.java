@@ -78,17 +78,17 @@ public class CustomerController {
 		Map paymentType = new java.util.HashMap();
 		LookupService lookupService = LookupService.getInstance();
 		List<Lookup> custTypeList = lookupService.getLookupList(Constants.CUST_TYPE);
-		for (Lookup custType : custTypeList) {
-			String customerTypeKey = Constants.CUST_TYPE_PERSON_KEY;
-			if (custType.getLookupKey().endsWith(Constants.CUST_TYPE_COMPANY_KEY)) customerTypeKey = Constants.CUST_TYPE_COMPANY_KEY;
-			customerType.put(customerTypeKey, custType.getLookupValue());
-		}
+//		for (Lookup custType : custTypeList) {
+//			String customerTypeKey = Constants.CUST_TYPE_PERSON_KEY;
+//			if (custType.getLookupKey().endsWith(Constants.CUST_TYPE_COMPANY_KEY)) customerTypeKey = Constants.CUST_TYPE_COMPANY_KEY;
+//			customerType.put(customerTypeKey, custType.getLookupValue());
+//		}
 		List<Lookup> paymentTypeList = lookupService.getLookupList(Constants.PAYMENT_TYPE);
-		for (Lookup paymentTypeOption : paymentTypeList) {
-			String paymentTypeKey = Constants.PAYMENT_TYPE_CASH;
-			if (paymentTypeOption.getLookupKey().endsWith(Constants.PAYMENT_TYPE_CREDIT_CARD_KEY)) paymentTypeKey = Constants.PAYMENT_TYPE_CREDIT_CARD_KEY;
-			paymentType.put(paymentTypeKey, paymentTypeOption.getLookupValue());
-		}
+//		for (Lookup paymentTypeOption : paymentTypeList) {
+//			String paymentTypeKey = Constants.PAYMENT_TYPE_CASH;
+//			if (paymentTypeOption.getLookupKey().endsWith(Constants.PAYMENT_TYPE_CREDIT_CARD_KEY)) paymentTypeKey = Constants.PAYMENT_TYPE_CREDIT_CARD_KEY;
+//			paymentType.put(paymentTypeKey, paymentTypeOption.getLookupValue());
+//		}
 		map.put("customerType", customerType);
 		map.put("paymentType", paymentType);
 		Map<String, String> initSalesMap = new HashMap();

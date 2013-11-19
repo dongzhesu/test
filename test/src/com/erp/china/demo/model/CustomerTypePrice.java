@@ -11,7 +11,7 @@ public class CustomerTypePrice {
 	private String typeId;
 
 	@Column(name="customer_type")
-	private Lookup lookup;
+	private Lookup customerType;
 
 	@Column(name="product_id")
 	private Product product;
@@ -33,12 +33,12 @@ public class CustomerTypePrice {
 		this.typeId = typeId;
 	}
 
-	public Lookup getLookup() {
-		return lookup;
+	public Lookup getCustomerType() {
+		return customerType;
 	}
 
-	public void setLookup(Lookup lookup) {
-		this.lookup = lookup;
+	public void setCustomerType(Lookup customerType) {
+		this.customerType = customerType;
 	}
 
 	public Product getProduct() {

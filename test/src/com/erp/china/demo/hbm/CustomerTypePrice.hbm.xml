@@ -7,6 +7,6 @@
 		<property name="createdDate" type="java.util.Date" column="type_create_time" not-null="true" />
 		<property name="lastModifiedDate" type="java.util.Date" column="type_last_modified_time" not-null="true" />
 		<many-to-one name="customerType" column="customer_type" class="com.erp.china.demo.model.Lookup" not-null="true" />
-		<many-to-one name="productId" column="product_id" class="com.erp.china.demo.model.Product" not-null="true" />
+		<many-to-one name="product" column="product_id" class="com.erp.china.demo.model.Product" not-null="true" />
 	</class>
 </hibernate-mapping>

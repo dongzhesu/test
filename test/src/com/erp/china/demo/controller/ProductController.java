@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.erp.china.demo.model.Order;
+import com.erp.china.demo.model.CustomerTypePrice;
+import com.erp.china.demo.model.Lookup;
 import com.erp.china.demo.model.Product;
-import com.erp.china.demo.model.User;
+import com.erp.china.demo.service.CustomerTypePriceService;
+import com.erp.china.demo.service.LookupService;
 import com.erp.china.demo.service.ProductService;
 import com.erp.china.demo.util.Constants;
 
@@ -27,6 +29,8 @@ import com.erp.china.demo.util.Constants;
 @RequestMapping("/PD")
 public class ProductController {
 	private static ProductService productService;
+	private static LookupService lookupService;
+	private static CustomerTypePriceService customerTypePriceService;
 	private Logger logger;
 	private static Map<String, String> productMap;
 
@@ -35,6 +39,12 @@ public class ProductController {
 		productMap = new ConcurrentHashMap();
 		if (productService == null) {
 			productService = ProductService.getInstance();
+		}
+		if (lookupService == null) {
+			lookupService = LookupService.getInstance();
+		}
+		if (customerTypePriceService == null) {
+			customerTypePriceService = CustomerTypePriceService.getInstance();
 		}
 		initProductMap();
 	}
@@ -110,7 +120,13 @@ public class ProductController {
 			entityMap.put("product_price", Double.toString(product.getProductPrice()));
 			entityMap.put("product_price2", Double.toString(product.getProductPrice2()));
 			entityMap.put("product_qty", Integer.toString(product.getProductQty()));
-			
+			List<CustomerTypePrice> customerTypePriceList = customerTypePriceService.getCustomerTypePriceList(product);
+			int counter = 1;
+			for (CustomerTypePrice customerTypePrice : customerTypePriceList) {
+				entityMap.put("custType_price"+counter, Double.toString(customerTypePrice.getProductPrice()));
+				counter++;
+			}
+
 			entityMap.put(Constants.CREATED_DATE, product.getCreatedDate().toString());
 			entityMap.put(Constants.LAST_MODIFIED_DATE, product.getLastModifiedDate().toString());
 			productMapList.add(entityMap);
@@ -125,7 +141,7 @@ public class ProductController {
 		productMap.put(Constants.SELECTED, request.getParameter("value"));
 		return productMap;
 	}
-	
+
 	@RequestMapping(value="update", method = RequestMethod.PUT)
 	public @ResponseBody Map update(@RequestBody Map requestMap) {
 		Product entity = new Product();
@@ -139,11 +155,13 @@ public class ProductController {
 		entity.setProductPrice2(requestMap.get("product_price2")!=null?Double.parseDouble(requestMap.get("product_price2").toString()):0);
 		entity.setProductQty(requestMap.get("product_qty")!=null?Integer.parseInt(requestMap.get("product_qty").toString()):0);
 		productService.updateProduct(entity);
+		List<Lookup> custTypeList = lookupService.getLookupList(Constants.CUST_TYPE);
+		customerTypePriceService.updateCustomerTypePrice(entity, custTypeList);
 		Map resultMap = new HashMap();
 		resultMap.put("success", true);
 		return resultMap;
 	}
-	
+
 	@RequestMapping(value="create", method = RequestMethod.POST)
 	public @ResponseBody Map create(@RequestBody Map requestMap) {
 		Product entity = new Product();
@@ -156,13 +174,26 @@ public class ProductController {
 		entity.setProductPrice2(requestMap.get("product_price2")!=null?Double.parseDouble(requestMap.get("product_price2").toString()):0);
 		entity.setProductQty(requestMap.get("product_qty")!=null?Integer.parseInt(requestMap.get("product_qty").toString()):0);
 		productService.createProduct(entity);
+		List<Lookup> custTypeList = lookupService.getLookupList(Constants.CUST_TYPE);
+		customerTypePriceService.createCustomerTypePrice(entity, custTypeList);
 		Map resultMap = new HashMap();
 		resultMap.put("success", true);
 		return resultMap;
 	}
-	
+
 	@RequestMapping(value="delete", method = RequestMethod.DELETE)
 	public @ResponseBody Map delete(@RequestBody Map requestMap) {
+		String productId = requestMap.get("product_id").toString();
+		List<Lookup> custTypeList = lookupService.getLookupList(Constants.CUST_TYPE);
+		customerTypePriceService.removeCustomerTypePrice(productId, custTypeList);
+		productService.removeProduct(productId);
+		Map resultMap = new HashMap();
+		resultMap.put("success", true);
+		return resultMap;
+	}
+
+	@RequestMapping(value="fetchCustTypePrice", method = RequestMethod.POST)
+	public @ResponseBody Map fetchCustTypePrice(@RequestBody Map requestMap) {
 		Product entity = new Product();
 		String productId = requestMap.get("product_id").toString();
 		productService.removeProduct(productId);

@@ -12,12 +12,8 @@ public class Constants {
 	public static final SimpleDateFormat invoice_sdf = new SimpleDateFormat("yyyy/MMM/dd");
 
 	public static final String SELECTED = "selected";
-	public static final String CUST_TYPE = "cust_type";
-	public static final String CUST_TYPE_PERSON_KEY = "P";
-	public static final String CUST_TYPE_COMPANY_KEY = "C";
-	public static final String PAYMENT_TYPE = "payment_type";
-	public static final String PAYMENT_TYPE_CASH = "Cash";
-	public static final String PAYMENT_TYPE_CREDIT_CARD_KEY = "CreditCard";
+	public static final String CUST_TYPE = "custType";
+	public static final String PAYMENT_TYPE = "paymentType";
 
 	public static final String DEFAULT_SYSTEM_ID = "100";
 
@@ -48,5 +44,6 @@ public class Constants {
 	public static final String DISCOUNT = "DISCOUNT";
 	public static final String PRODUCT_PRICE = "PRODUCT_PRICE";
 	public static final String BOOKING_QTY = "BOOKING_QTY";
+	public static final String TOTAL_ITEM_AMOUNT = "TOTAL_ITEM_AMOUNT";
 	public static final String TOTAL_AMOUNT = "TOTAL_AMOUNT";
 }

@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.erp.china.demo.dao.CustomerTypePriceDAO;
 import com.erp.china.demo.dao.DBCustomerTypePriceDAO;
 import com.erp.china.demo.model.CustomerTypePrice;
+import com.erp.china.demo.model.Lookup;
+import com.erp.china.demo.model.Product;
 
 public class CustomerTypePriceService {
 	private static Logger logger = Logger.getLogger(CustomerTypePriceService.class);
@@ -27,8 +29,23 @@ public class CustomerTypePriceService {
 	}
 
 	@Transactional
+	public List<CustomerTypePrice> createCustomerTypePrice() {
+		return customerTypePriceDAO.customerTypePriceList();
+	}
+
+	@Transactional
+    public void createCustomerTypePrice(Product product, List<Lookup> custTypeList) {
+		customerTypePriceDAO.createCustomerTypePrice(new CustomerTypePrice(), product, custTypeList);
+    }
+
+	@Transactional
 	public List<CustomerTypePrice> getCustomerTypePriceList() {
 		return customerTypePriceDAO.customerTypePriceList();
+	}
+
+	@Transactional
+	public List<CustomerTypePrice> getCustomerTypePriceList(Product product) {
+		return customerTypePriceDAO.customerTypePriceList(product);
 	}
 
 	@Transactional
@@ -39,5 +56,15 @@ public class CustomerTypePriceService {
 	@Transactional
 	public CustomerTypePrice loadCustomerTypePrice(String customerType, String productId) {
 		return customerTypePriceDAO.loadCustomerTypePrice(customerType, productId);
+	}
+
+	@Transactional
+	public void updateCustomerTypePrice(Product product, List<Lookup> custTypeList) {
+		customerTypePriceDAO.updateCustomerTypePrice(product, custTypeList);
+	}
+
+	@Transactional
+	public void removeCustomerTypePrice(String productId, List<Lookup> custTypeList) {
+		customerTypePriceDAO.removeCustomerTypePrice(productId, custTypeList);
 	}
 }

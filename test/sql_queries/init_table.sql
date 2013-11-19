@@ -106,6 +106,6 @@ create table tcustomer_type_price(
 	product_price           NUMERIC(10,2),
 	type_create_time        TIMESTAMP NOT NULL default now(),
 	type_last_modified_time TIMESTAMP NOT NULL default now(),
-	CONSTRAINT tcustomer_type_fk FOREIGN KEY (customer_type) REFERENCES tlookup (lookup_key),
+	CONSTRAINT tcustomer_type_fk FOREIGN KEY (customer_type) REFERENCES tlookup (lookup_id),
 	CONSTRAINT tproduct_id_fk FOREIGN KEY (product_id) REFERENCES tproduct (product_id)
 );
