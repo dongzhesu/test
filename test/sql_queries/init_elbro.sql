@@ -472,7 +472,7 @@ insert into tcustomer(customer_id, sales_id, customer_number, customer_name, cus
 ('C00469','Sales001','106745','Capgemini','','','Jamieson Bryan','(852)9162 1328','','','Unit 501A, 5th Floor,,9 Queen''s Road Central,,Central',now(),now()),
 ('C00470','Sales001','106035','Gaia','','','Becky Lau','(852)2125 3329','','','G/F,Grand Millennium Plaza,181 Queen''s Road,Central',now(),now()),
 ('C00471','Sales001','106208','Gaia Group','','','Evan Lam','(852)2125 3329','','','15/F Seaview Commercial Building,21-24 Connaght Road West,,Wanchai',now(),now()),
-('C00472','Sales001','105012','裔奧佴縉溜泆','','','笚屢樽','(8620)83501667','','','紩蔬陔傑貌呠繚172瘍陎魚湮狪忑脯02,,,',now(),now()),
+('C00472','Sales001','105012','裔奧佴縉溜泆','','','笚屢樽','(8620)83501667','','','紩蔬陔傑貌呠繚172瘍陎魚湮狪忑脯02,,,',now(),now()),
 ('C00473','Sales001','115219','VIVO','','','Leandro Ning','(852)3106 2526','','','Shop B on G/F & Cockloft,Elgin Building,41-43 Elgin Street,Central',now(),now()),
 ('C00474','Sales001','115126','Census','','','Ming Leung','(852)3110 2290','','','19/F,Henry House,42 Yun Ping Road,Causeway Bay',now(),now()),
 ('C00475','Sales001','6054','Galbarini Giorgio','','','Galbarini Giorgio','','','','19/F,The Hennessy,256 Hennessy Road,Wan Chai',now(),now()),
