@@ -24,5 +24,5 @@ insert into tproduct (product_id, product_type, product_code, product_name, prod
 ('P00004', 'AB', 'AB00408', 'Product Wine D', 'Product Wine D Desc', '2009', '', 145, 145, 78, now(), now()),
 ('P00005', 'AB', 'AB00508', 'Product Wine E', 'Product Wine E Desc', '2005', '', 155, 155, 90, now(), now());
 
-insert into torder(order_id, customer_id, order_type, order_number, order_price, order_date, delivery_date, order_create_time, order_last_modified_time) values
-('PO00001', 'C00001', 'NV', 'NV00001', 1000, now(), now(), now(), now());
+insert into torder(order_id, customer_id, order_type, order_number, order_price, order_date, delivery_date, remarks, order_create_time, order_last_modified_time) values
+('PO00001', 'C00001', 'NV', 'NV00001', 1000, now(), now(), 'Test Remarks',  now(), now());
