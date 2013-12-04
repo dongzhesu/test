@@ -58,9 +58,13 @@ public class DBOrderDAO extends AbstractDAO implements OrderDAO {
 		Transaction tx = session.beginTransaction();
 		Order existingOrder = (Order) session.load(Order.class, order.getOrderId());
 		existingOrder.setCustomer(order.getCustomer());
+		existingOrder.setOrderType(order.getOrderType());
 		existingOrder.setOrderNumber(order.getOrderNumber());
 		existingOrder.setOrderPrice(order.getOrderPrice());
 		existingOrder.setOrderDate(order.getOrderDate());
+		existingOrder.setDeliveryDate(order.getDeliveryDate());
+		existingOrder.setRemarks(order.getRemarks());
+		//TODO: need to add order status here
 		existingOrder.setLastModifiedDate(new java.util.Date());
 		session.saveOrUpdate(existingOrder);
 		tx.commit();

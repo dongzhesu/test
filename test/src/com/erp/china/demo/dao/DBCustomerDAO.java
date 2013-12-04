@@ -57,6 +57,7 @@ public class DBCustomerDAO extends AbstractDAO implements CustomerDAO {
 		Transaction tx = session.beginTransaction();
 		Customer existingCustomer = (Customer) session.load(Customer.class, customer.getCustomerId());
 		existingCustomer.setSales(customer.getSales());
+		existingCustomer.setCustomerNumber(customer.getCustomerNumber());
 		existingCustomer.setCustomerName(customer.getCustomerName());
 		existingCustomer.setCustomerType(customer.getCustomerType());
 		existingCustomer.setPaymentType(customer.getPaymentType());
