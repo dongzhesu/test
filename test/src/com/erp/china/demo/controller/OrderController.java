@@ -160,6 +160,8 @@ public class OrderController {
 			entityMap.put("customer_name", entity.getCustomer().getCustomerName());
 			entityMap.put("customer_id", entity.getCustomer().getCustomerId());
 			entityMap.put("order_number", entity.getOrderNumber());
+			entityMap.put("order_type", entity.getOrderType());
+			entityMap.put("remarks", entity.getRemarks());
 			entityMap.put("order_price", Double.toString(entity.getOrderPrice()));
 			entityMap.put("order_date", entity.getOrderDate().toString());
 			
@@ -180,19 +182,25 @@ public class OrderController {
 	
 	@RequestMapping(value="update", method = RequestMethod.PUT)
 	public @ResponseBody Map update(@RequestBody Map requestMap) {
+		String order_id = requestMap.get("order_id").toString();
+		boolean isBookingDeleted = bookingService.deleteBookingByOrderId(order_id);
+		if (isBookingDeleted) {
+			orderService.removeOrder(order_id);
+		}
 		Order entity = new Order();
 		Customer customer = CustomerService.getInstance().loadCustomer(requestMap.get("customer_id").toString());
 		entity.setCustomer(customer);
-		entity.setOrderId(requestMap.get("order_id")!=null?requestMap.get("order_id").toString():"");
+		//entity.setOrderId(requestMap.get("order_id")!=null?requestMap.get("order_id").toString():"");
 		entity.setOrderNumber(requestMap.get("order_number")!=null?requestMap.get("order_number").toString():"");
 		entity.setOrderPrice(requestMap.get("order_price")!=null?Double.parseDouble(requestMap.get("order_price").toString()):0);
 		entity.setOrderType(requestMap.get("order_type")!=null?requestMap.get("order_type").toString():"");
 		entity.setRemarks(requestMap.get("remarks")!=null?requestMap.get("remarks").toString():"");
 		entity.setDeliveryDate(new Date());
 		entity.setOrderDate(new Date());
-		orderService.updateOrder(entity);
+		String orderId = orderService.createOrder(entity);
 		Map resultMap = new HashMap();
 		resultMap.put("success", true);
+		resultMap.put("orderId", orderId);
 		return resultMap;
 	}
 	

@@ -4,6 +4,7 @@ Ext.define('Test.model.Customer', {
         {name: 'customer_id',  type: 'string'},
         
         {name: 'sales_id',  type: 'string'},
+        {name: 'customer_number',  type: 'string'},
         
         {name: 'customer_name',  type: 'string'},
         {name: 'customer_type',  type: 'string'},

@@ -3,6 +3,12 @@ Ext.define('Test.view.sub.CustomerList', {
     alias: 'widget.customerList',
     toolbarItems: [],
     gridColumns: [ {
+        header: 'Customer Number'.i18n(),
+        dataIndex: 'customer_number',
+        align: 'center',
+        flex: 1,
+        minWidth: 100
+    },  {
         header: 'Customer Name'.i18n(),
         dataIndex: 'customer_name',
         align: 'center',

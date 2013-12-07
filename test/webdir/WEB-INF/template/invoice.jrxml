@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoice" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.853116706110006"/>
-	<property name="ireport.x" value="843"/>
-	<property name="ireport.y" value="1078"/>
+	<property name="ireport.x" value="527"/>
+	<property name="ireport.y" value="881"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -31,7 +31,6 @@
 	<field name="PRODUCT_PRICE" class="java.lang.String"/>
 	<field name="DISCOUNT" class="java.lang.String"/>
 	<field name="BOOKING_QTY" class="java.lang.String"/>
-	<field name="TOTAL_ITEM_AMOUNT" class="java.lang.String"/>
 	<field name="TOTAL_AMOUNT" class="java.lang.String"/>
 	<group name="Group1">
 		<groupHeader>
@@ -175,36 +174,6 @@
 		</groupHeader>
 		<groupFooter>
 			<band/>
-			<band height="44">
-				<line>
-					<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="555" height="1"/>
-					<graphicElement>
-						<pen lineWidth="0.5" lineColor="#999999"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement style="SubTitle" x="8" y="6" width="82" height="15"/>
-					<textElement textAlignment="Left" markup="none">
-						<font size="12" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Received By]]></text>
-				</staticText>
-			</band>
-			<band height="45">
-				<line>
-					<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="555" height="1"/>
-					<graphicElement>
-						<pen lineWidth="0.5" lineColor="#999999"/>
-					</graphicElement>
-				</line>
-				<staticText>
-					<reportElement style="SubTitle" x="8" y="7" width="82" height="15"/>
-					<textElement textAlignment="Left" markup="none">
-						<font size="12" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Chop]]></text>
-				</staticText>
-			</band>
 		</groupFooter>
 	</group>
 	<group name="Group2">
@@ -268,22 +237,6 @@
 				</staticText>
 			</band>
 		</groupHeader>
-		<groupFooter>
-			<band height="39">
-				<staticText>
-					<reportElement style="SubTitle" x="434" y="12" width="57" height="15"/>
-					<textElement textAlignment="Right" markup="none">
-						<font size="12" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Total]]></text>
-				</staticText>
-				<textField>
-					<reportElement style="Detail" isPrintRepeatedValues="false" x="498" y="12" width="54" height="15"/>
-					<textElement/>
-					<textFieldExpression><![CDATA[$F{TOTAL_AMOUNT}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupFooter>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -314,7 +267,7 @@
 			</staticText>
 			<image>
 				<reportElement x="6" y="6" width="137" height="28"/>
-				<imageExpression><![CDATA["../../images/logo_elbrowine.png"]]></imageExpression>
+				<imageExpression><![CDATA["http://localhost:8080/ERP_demo/images/logo_elbrowine.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement style="SubTitle" x="121" y="67" width="434" height="22"/>
@@ -342,7 +295,7 @@
 			</staticText>
 			<image>
 				<reportElement x="8" y="68" width="105" height="66"/>
-				<imageExpression><![CDATA["../../images/wine.png"]]></imageExpression>
+				<imageExpression><![CDATA["http://localhost:8080/ERP_demo/images/wine.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -419,12 +372,12 @@
 			<textField isStretchWithOverflow="true">
 				<reportElement style="Detail" x="498" y="7" width="54" height="15" isPrintWhenDetailOverflows="true"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[$F{TOTAL_ITEM_AMOUNT}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{TOTAL_AMOUNT}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="8" splitType="Stretch">
+		<band height="9" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
 				<graphicElement>
@@ -434,30 +387,13 @@
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="47" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="-21" y="0" width="597" height="47" forecolor="#D0B48E" backcolor="#F2EBDF"/>
-				<staticText>
-					<reportElement style="SubTitle" x="21" y="0" width="555" height="47"/>
-					<textElement textAlignment="Center" markup="none">
-						<font size="10" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Customer agrees to promptly pay this bill according to the terms stated herewith.
-Elbro Wine can only accept return goods that are in original saleable condition.
-Damaged goods cannot be accepted back and must be paid for by the customer.
-Elbro Wine will collect the POS back after promotion or event. In case of damage, full price will be charged.]]></text>
-				</staticText>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
 			</frame>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="12" splitType="Stretch">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="5" width="555" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
-		</band>
+		<band splitType="Stretch"/>
 	</summary>
 </jasperReport>

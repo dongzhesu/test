@@ -17,6 +17,12 @@ Ext.define('Test.view.edit.Customer', {
 //            },
             {
                 xtype: 'textfield',
+                name : 'customer_number',
+                fieldLabel: 'Customer Number',
+                allowBlank: false
+            },
+            {
+                xtype: 'textfield',
                 name : 'customer_name',
                 fieldLabel: 'Customer Name',
                 allowBlank: false
