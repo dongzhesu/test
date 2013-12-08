@@ -258,9 +258,9 @@ public class OrderController {
 		for (Iterator<Booking> bookingItr = bookingList.iterator(); bookingItr.hasNext();) {
 			Booking booking = bookingItr.next();
 			if (i == 0) {
-				parameterMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
-				parameterMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
-				parameterMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
+				parameterMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode()!=null?booking.getBookingId().getProduct().getProductCode():"");
+				parameterMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc()!=null?booking.getBookingId().getProduct().getProductDesc():"");
+				parameterMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear()!=null?booking.getBookingId().getProduct().getProductYear():"");
 				parameterMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
 				parameterMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
 				parameterMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
@@ -270,9 +270,9 @@ public class OrderController {
 				parameterList.add(parameterMap);
 			} else {
 				Map<String, Object> productMap = new HashMap<String, Object>();
-				productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
-				productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
-				productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
+				productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode()!=null?booking.getBookingId().getProduct().getProductCode():"");
+				productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc()!=null?booking.getBookingId().getProduct().getProductDesc():"");
+				productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear()!=null?booking.getBookingId().getProduct().getProductYear():"");
 				productMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
 				productMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
 				productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
@@ -314,9 +314,9 @@ public class OrderController {
 		for (Iterator<Booking> bookingItr = bookingList.iterator(); bookingItr.hasNext();) {
 			Booking booking = bookingItr.next();
 			if (i == 0) {
-				parameterMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
-				parameterMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
-				parameterMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
+				parameterMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode()!=null?booking.getBookingId().getProduct().getProductCode():"");
+				parameterMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc()!=null?booking.getBookingId().getProduct().getProductDesc():"");
+				parameterMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear()!=null?booking.getBookingId().getProduct().getProductYear():"");
 				parameterMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
 				parameterMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
 				parameterMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
@@ -326,9 +326,9 @@ public class OrderController {
 				parameterList.add(parameterMap);
 			} else {
 				Map<String, Object> productMap = new HashMap<String, Object>();
-				productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
-				productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
-				productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
+				productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode()!=null?booking.getBookingId().getProduct().getProductCode():"");
+				productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc()!=null?booking.getBookingId().getProduct().getProductDesc():"");
+				productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear()!=null?booking.getBookingId().getProduct().getProductYear():"");
 				productMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
 				productMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
 				productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));

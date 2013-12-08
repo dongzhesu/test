@@ -41,6 +41,7 @@ create table torder(
 	order_date               TIMESTAMP NULL,
 	delivery_date            TIMESTAMP NULL,
 	remarks                  VARCHAR(100),
+	order_status             VARCHAR(25),
 	order_create_time        TIMESTAMP NOT NULL default now(),
 	order_last_modified_time TIMESTAMP NOT NULL default now(),
 	CONSTRAINT torder_customer_id_fk FOREIGN KEY (customer_id) REFERENCES tcustomer (customer_id)
@@ -54,9 +55,9 @@ create table tproduct(
 	product_desc               VARCHAR(150),
 	product_year               VARCHAR(4),
 	product_country            VARCHAR(50),
-	product_price              NUMERIC(10,2),
-	product_price_2            NUMERIC(10,2),
-	product_qty                INTEGER NULL,
+	product_price              NUMERIC(10,2) NOT NULL,
+	product_price_2            NUMERIC(10,2) NOT NULL,
+	product_qty                INTEGER NOT NULL default 0,
 	product_create_time        TIMESTAMP NOT NULL default now(),
 	product_last_modified_time TIMESTAMP NOT NULL default now()
 );
@@ -64,10 +65,10 @@ create table tproduct(
 create table tbooking(
 	order_id                   VARCHAR(25) NOT NULL,
 	product_id                 VARCHAR(25) NOT NULL,
-	booking_qty                INTEGER NULL,
-	unit_price                 NUMERIC(10,2),
-	discount                   INTEGER NULL,
-	booking_price              NUMERIC(10,2),
+	booking_qty                INTEGER NOT NULL default 0,
+	unit_price                 NUMERIC(10,2) NOT NULL default 0,
+	discount                   INTEGER NOT NULL default 0,
+	booking_price              NUMERIC(10,2) NOT NULL default 0,
 	booking_status             VARCHAR(25),
 	booking_create_time        TIMESTAMP NOT NULL default now(),
 	booking_last_modified_time TIMESTAMP NOT NULL default now(),
