@@ -266,19 +266,8 @@ public class OrderController {
 				parameterMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
 				parameterMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
 				parameterMap.put(Constants.TOTAL_ITEM_AMOUNT, String.valueOf(booking.getBookingPrice()));
+				if (bookingList.size() == 1) parameterMap.put(Constants.TOTAL_AMOUNT, String.valueOf(order.getOrderPrice()));
 				parameterList.add(parameterMap);
-			} else if (i == (bookingList.size() - 1)) {
-				Map<String, Object> productMap = new HashMap<String, Object>();
-				productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
-				productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
-				productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
-				productMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
-				productMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
-				productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
-				productMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
-				productMap.put(Constants.TOTAL_ITEM_AMOUNT, String.valueOf(booking.getBookingPrice()));
-				productMap.put(Constants.TOTAL_AMOUNT, String.valueOf(order.getOrderPrice()));
-				parameterList.add(productMap);
 			} else {
 				Map<String, Object> productMap = new HashMap<String, Object>();
 				productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
@@ -289,6 +278,7 @@ public class OrderController {
 				productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
 				productMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
 				productMap.put(Constants.TOTAL_ITEM_AMOUNT, String.valueOf(booking.getBookingPrice()));
+				if (i == (bookingList.size() - 1)) productMap.put(Constants.TOTAL_AMOUNT, String.valueOf(order.getOrderPrice()));
 				parameterList.add(productMap);
 			}
 			i++;
@@ -332,19 +322,8 @@ public class OrderController {
 				parameterMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
 				parameterMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
 				parameterMap.put(Constants.TOTAL_ITEM_AMOUNT, String.valueOf(booking.getBookingPrice()));
+				if (bookingList.size() == 1) parameterMap.put(Constants.TOTAL_AMOUNT, String.valueOf(order.getOrderPrice()));
 				parameterList.add(parameterMap);
-			} else if (i == (bookingList.size() - 1)) {
-				Map<String, Object> productMap = new HashMap<String, Object>();
-				productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
-				productMap.put(Constants.PRODUCT_DESC, booking.getBookingId().getProduct().getProductDesc());
-				productMap.put(Constants.PRODUCT_YEAR, booking.getBookingId().getProduct().getProductYear());
-				productMap.put(Constants.PRODUCT_PRICE, String.valueOf(booking.getBookingId().getProduct().getProductPrice()));
-				productMap.put(Constants.DISCOUNT, String.valueOf(booking.getDiscount()));
-				productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
-				productMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
-				productMap.put(Constants.TOTAL_ITEM_AMOUNT, String.valueOf(booking.getBookingPrice()));
-				productMap.put(Constants.TOTAL_AMOUNT, String.valueOf(order.getOrderPrice()));
-				parameterList.add(productMap);
 			} else {
 				Map<String, Object> productMap = new HashMap<String, Object>();
 				productMap.put(Constants.PRODUCT_CODE, booking.getBookingId().getProduct().getProductCode());
@@ -355,6 +334,7 @@ public class OrderController {
 				productMap.put(Constants.UNIT_PRICE, String.valueOf(booking.getUnitPrice()));
 				productMap.put(Constants.BOOKING_QTY, String.valueOf(booking.getBookingQty()));
 				productMap.put(Constants.TOTAL_ITEM_AMOUNT, String.valueOf(booking.getBookingPrice()));
+				if (i == (bookingList.size() - 1)) productMap.put(Constants.TOTAL_AMOUNT, String.valueOf(order.getOrderPrice()));
 				parameterList.add(productMap);
 			}
 			i++;

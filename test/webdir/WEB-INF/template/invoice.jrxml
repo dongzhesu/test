@@ -295,7 +295,7 @@
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12" pdfFontName="C:/Windows/Fonts/ARIAL.ttf" pdfEncoding="UTF-8" isPdfEmbedded="false"/>
 				</textElement>
-				<text><![CDATA[鎬�瀵�閰�妤紙棣�娓級鏈�闄�鍏�鍙竇]></text>
+				<text><![CDATA[鎬�瀵�閰�妤紙棣�娓級鏈�闄�鍏�鍙竇]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SubTitle" x="8" y="40" width="103" height="22"/>

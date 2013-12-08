@@ -65,10 +65,12 @@ Ext.define('Test.controller.sub.OrderController', {
     onPrintPDFClick: function (btn) {
     	var grid = this.getOrderList().down('grid');
         var selection = grid.getSelectionModel().getSelection();
-		if(selection && selection.length>0){
+		if (selection && selection.length>0) {
+			var serverPath = window.location.href;
+			var serverPathIndex = serverPath.lastIndexOf("/");
 			var order_id = selection[0].get('order_id');
 			console.log(order_id);
-			window.open('/ERP_demo/OD/'+order_id+'/pdf.html');
+			window.open(serverPath.substring(0, serverPathIndex)+'/OD/'+order_id+'/pdf.html');
 //			Ext.Ajax.request({
 //				url: 'http://localhost:8080/ERP_demo/OD/pdf.html',
 //				method:'GET',
