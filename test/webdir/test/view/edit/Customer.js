@@ -33,7 +33,7 @@ Ext.define('Test.view.edit.Customer', {
                 fieldLabel: 'Sales',
                 editable: false,
                 emptyText: 'Please select',
-                store: Ext.create('Test.store.SalesStore'),
+                store: Ext.create('Test.store.SalesStore').load(),
                 valueField: 'sales_id',
                 displayField: 'sales_name',
                 allowBlank: false,

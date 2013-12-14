@@ -14,7 +14,7 @@ Ext.define('Test.view.edit.Booking', {
 			    fieldLabel: 'Order Number',
 			    editable: false,
 			    emptyText: 'Please select',
-			    store: Ext.create('Test.store.OrderStore'),
+			    store: Ext.create('Test.store.OrderStore').load(),
 			    valueField: 'order_id',
 			    displayField: 'order_number',
 			    allowBlank: false,
