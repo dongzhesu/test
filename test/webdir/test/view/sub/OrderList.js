@@ -54,7 +54,7 @@ Ext.define('Test.view.sub.OrderList', {
         sortable: true,
         renderer:Ext.util.Format.dateRenderer('m/d/Y')
     },{
-        header: 'Delivery Time'.i18n(),
+        header: 'Delivery Date'.i18n(),
         dataIndex: 'delivery_date',
         align: 'center',
         flex: 1,

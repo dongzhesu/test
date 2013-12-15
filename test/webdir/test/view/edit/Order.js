@@ -56,6 +56,13 @@ Ext.define('Test.view.edit.Order', {
 							fieldLabel: 'Order Price'
 						},
 						{
+        					xtype: 'datefield',
+        					anchor: '100%',
+					        fieldLabel: 'Delivery Date',
+					        name: 'delivery_date',
+        					format: 'm-d-Y'
+					    },
+						{
 							xtype: 'textfield',
 							name : 'remarks',
 							fieldLabel: 'Remarks'

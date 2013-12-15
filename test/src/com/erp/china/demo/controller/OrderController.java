@@ -1,6 +1,7 @@
 package com.erp.china.demo.controller;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -164,6 +165,8 @@ public class OrderController {
 			entityMap.put("remarks", entity.getRemarks());
 			entityMap.put("order_price", Double.toString(entity.getOrderPrice()));
 			entityMap.put("order_date", entity.getOrderDate().toString());
+			entityMap.put("delivery_date", entity.getDeliveryDate().toString());
+			
 			
 			entityMap.put(Constants.CREATED_DATE, entity.getCreatedDate().toString());
 			entityMap.put(Constants.LAST_MODIFIED_DATE, entity.getLastModifiedDate().toString());
@@ -186,7 +189,8 @@ public class OrderController {
 		boolean isBookingDeleted = bookingService.deleteBookingByOrderId(order_id);
 		if (isBookingDeleted) {
 			orderService.removeOrder(order_id);
-		}
+		}else
+			return null;
 		Order entity = new Order();
 		Customer customer = CustomerService.getInstance().loadCustomer(requestMap.get("customer_id").toString());
 		entity.setCustomer(customer);
@@ -195,7 +199,23 @@ public class OrderController {
 		entity.setOrderPrice(requestMap.get("order_price")!=null?Double.parseDouble(requestMap.get("order_price").toString()):0);
 		entity.setOrderType(requestMap.get("order_type")!=null?requestMap.get("order_type").toString():"");
 		entity.setRemarks(requestMap.get("remarks")!=null?requestMap.get("remarks").toString():"");
-		entity.setDeliveryDate(new Date());
+		if(requestMap.get("delivery_date")!=null&&requestMap.get("delivery_date").toString()!=""){
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+			
+			String delivery_date=requestMap.get("delivery_date").toString();
+			Date delivery;
+			try {
+				delivery = sdf.parse(delivery_date);
+				entity.setDeliveryDate(delivery);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				entity.setDeliveryDate(new Date());
+				e.printStackTrace();
+			}
+			
+		}else 
+			entity.setDeliveryDate(new Date());
+
 		entity.setOrderDate(new Date());
 		String orderId = orderService.createOrder(entity);
 		Map resultMap = new HashMap();
@@ -213,7 +233,22 @@ public class OrderController {
 		entity.setOrderPrice(requestMap.get("order_price")!=null?Double.parseDouble(requestMap.get("order_price").toString()):0);
 		entity.setOrderType(requestMap.get("order_type")!=null?requestMap.get("order_type").toString():"");
 		entity.setRemarks(requestMap.get("remarks")!=null?requestMap.get("remarks").toString():"");
-		entity.setDeliveryDate(new Date());
+		if(requestMap.get("delivery_date")!=null&&requestMap.get("delivery_date").toString()!=""){
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+			
+			String delivery_date=requestMap.get("delivery_date").toString();
+			Date delivery;
+			try {
+				delivery = sdf.parse(delivery_date);
+				entity.setDeliveryDate(delivery);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				entity.setDeliveryDate(new Date());
+				e.printStackTrace();
+			}
+			
+		}else 
+			entity.setDeliveryDate(new Date());
 		entity.setOrderDate(new Date());
 		String orderId = orderService.createOrder(entity);
 		Map resultMap = new HashMap();
