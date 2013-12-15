@@ -1,6 +1,7 @@
 package com.erp.china.demo.util;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  * @author Robby B. Setyo
@@ -8,8 +9,8 @@ import java.text.SimpleDateFormat;
  * Description: constants variables declaration
  */
 public class Constants {
-	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	public static final SimpleDateFormat invoice_sdf = new SimpleDateFormat("yyyy/MMM/dd");
+	public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+	public static final SimpleDateFormat invoice_sdf = new SimpleDateFormat("yyyy/MMM/dd", Locale.US);
 
 	public static final String SELECTED = "selected";
 	public static final String CUST_TYPE = "custType";
