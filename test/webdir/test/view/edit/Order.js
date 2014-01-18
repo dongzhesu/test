@@ -4,6 +4,7 @@ Ext.define('Test.view.edit.Order', {
 	title: 'Edit Order',
 	layout: 'fit',
 	closeAction: 'hide',
+	customertype: 'Retail',
 	initComponent: function () {
 		this.setWidth(500);
 		this.items = [{
@@ -33,6 +34,13 @@ Ext.define('Test.view.edit.Order', {
 							allowBlank: false,
 						
 							listeners:{
+								select: function(combo, records, eOpts){
+								var ctype=	records[0].get('customer_type');
+								if(ctype=='4'||ctype=='5'||ctype=='6'){
+									combo.up('window').customertype = 'Trade';
+								}else
+									combo.up('window').customertype = 'Retail';
+								},
 								expand: function(c){
 									this.store.load();
 								}
@@ -119,7 +127,10 @@ Ext.define('Test.view.edit.Order', {
 						listeners:{
 							select: function(combo, records, eOpts){
 								var uprice = combo.up('container').down('#uprice');
-								uprice.setValue(records[0].get('product_price'));
+								var type_price = records[0].get('product_price');
+								if(combo.up('window').customertype=='Trade')
+									type_price = records[0].get('product_price2');
+								uprice.setValue(type_price);
 							},
 							expand: function(c){
 								this.store.load();
@@ -287,7 +298,10 @@ Ext.define('Test.view.edit.Order', {
 						listeners:{
 							select: function(combo, records, eOpts){
 								var uprice = combo.up('container').down('#uprice');
-								uprice.setValue(records[0].get('product_price'));
+								var type_price = records[0].get('product_price');
+								if(combo.up('window').customertype=='Trade')
+									type_price = records[0].get('product_price2');
+								uprice.setValue(type_price);
 							},
 							expand: function(c){
 								this.store.load();

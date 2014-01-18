@@ -237,8 +237,6 @@ Ext.define('Test.controller.sub.OrderController', {
              	);
 
            }
-
-
     },
     
     actionItems: [

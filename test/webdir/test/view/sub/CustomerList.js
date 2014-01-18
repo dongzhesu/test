@@ -29,11 +29,19 @@ Ext.define('Test.view.sub.CustomerList', {
         minWidth: 100,
         sortable: true,
         renderer: function(value){
-        	if(value=='V')
-        		return 'VIP';
-        	if(value=='O')
-        		return 'Normal';
-        	return 'New';
+        	if(value=='1')
+        		return 'Retail(A)';
+        	if(value=='2')
+        		return 'Retail(B)';
+        	if(value=='3')
+        		return 'Retail(C)';
+        	if(value=='4')
+        		return 'Trade(A)';
+        	if(value=='5')
+        		return 'Trade(B)';
+        	if(value=='6')
+        		return 'Trade(C)';
+        	return value;	
         }
     }, {
         header: 'Payment type'.i18n(),

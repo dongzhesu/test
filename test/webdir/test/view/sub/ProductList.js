@@ -35,14 +35,14 @@ Ext.define('Test.view.sub.ProductList', {
         minWidth: 100,
         sortable: true
     }, {
-        header: 'Price'.i18n(),
+        header: 'Retail Price'.i18n(),
         dataIndex: 'product_price',
         align: 'center',
         flex: 1,
         minWidth: 100,
         sortable: true
     }, {
-        header: 'Price2'.i18n(),
+        header: 'Trade Price'.i18n(),
         dataIndex: 'product_price2',
         align: 'center',
         flex: 1,

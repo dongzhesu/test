@@ -120,8 +120,11 @@ Ext.define('Test.view.edit.Customer', {
 var user_type = Ext.create('Ext.data.Store', {
     fields: ['value', 'name'],
     data : [
-        {"value":"V", "name":"VIP"},
-        {"value":"O", "name":"Normal"},
-        {"value":"N", "name":"New"}
+        {"value":"1", "name":"Retail(A)"},
+        {"value":"2", "name":"Retail(B)"},
+        {"value":"3", "name":"Retail(C)"},
+        {"value":"4", "name":"Trade(A)"},
+        {"value":"5", "name":"Trade(B)"},
+        {"value":"6", "name":"Trade(C)"}
     ]
 });

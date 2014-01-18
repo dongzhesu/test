@@ -41,12 +41,12 @@ Ext.define('Test.view.edit.Product', {
             {
                 xtype: 'textfield',
                 name : 'product_price',
-                fieldLabel: 'Price'
+                fieldLabel: 'Retail Price'
             },
             {
                 xtype: 'textfield',
                 name : 'product_price2',
-                fieldLabel: 'Price2'
+                fieldLabel: 'Trade Price'
             },
             {
                 xtype: 'textfield',
