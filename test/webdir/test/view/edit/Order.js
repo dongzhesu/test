@@ -53,6 +53,7 @@ Ext.define('Test.view.edit.Order', {
 						{
 							xtype: 'textfield',
 							name : 'order_price',
+							itemId : 'odprice',
 							fieldLabel: 'Order Price'
 						},
 						{
@@ -116,6 +117,10 @@ Ext.define('Test.view.edit.Order', {
 						allowBlank: false,
 						value: booking.get('product_id'),
 						listeners:{
+							select: function(combo, records, eOpts){
+								var uprice = combo.up('container').down('#uprice');
+								uprice.setValue(records[0].get('product_price'));
+							},
 							expand: function(c){
 								this.store.load();
 							}
@@ -125,26 +130,117 @@ Ext.define('Test.view.edit.Order', {
 					{
 						xtype: 'textfield',
 						name : 'booking_price',
+						itemId: 'tprice',
 						value: booking.get('booking_price'),
-						fieldLabel: 'Price'
+						fieldLabel: 'Price',
+						listeners:{
+							change: function(field, newValue, oldValue, eOpts ){
+								
+								var form = field.up('container').up('container');
+								var order = form.down('fieldset');
+								var orderPrice=order.down('#odprice');
+								
+								var booking = order.nextSibling('fieldset');
+								var newPrice = 0.0;
+								
+								while(booking){
+									var tprice = booking.down('#tprice').getValue();
+									if(tprice==null||tprice=='')
+										break;
+									newPrice = newPrice + parseFloat(tprice);	
+									booking = booking.nextSibling('fieldset');
+								}
+								
+								if(booking==null){
+									orderPrice.setValue(newPrice);
+								}
+								
+							}
+						}
 					},
 					{
 						xtype: 'textfield',
 						name : 'unit_price',
+						itemId: 'uprice',
 						value: booking.get('unit_price'),
-						fieldLabel: 'Unit Price'
+						fieldLabel: 'Unit Price',
+						listeners:{
+							change: function(field, newValue, oldValue, eOpts ){
+								
+								//get quantity
+								var Qty = field.up('container').down('#Qty');
+								var quantity = Qty.getValue();
+								
+								//get discount
+								var disc = field.up('container').down('#disc');
+								var discount = disc.getValue();
+								
+								if(quantity!=null&&quantity!=''&&discount!=null&&discount!=''){
+									var newPrice = parseFloat(quantity)*parseFloat(newValue)*parseFloat(discount)/100;
+									newPrice.toFixed(2);
+									
+									//set total price
+									var tprice = field.up('container').down('#tprice');
+									tprice.setValue(newPrice);
+								}
+							}
+						}
 					},
 					{
 						xtype: 'textfield',
 						name : 'booking_qty',
 						value: booking.get('booking_qty'),
-						fieldLabel: 'Qty'
+						fieldLabel: 'Qty',
+						itemId: 'Qty',
+						listeners:{
+							change: function(field, newValue, oldValue, eOpts ){
+								
+								//get unit price
+								var uprice = field.up('container').down('#uprice');
+								var unitPrice = uprice.getValue();
+								
+								//get discount
+								var disc = field.up('container').down('#disc');
+								var discount = disc.getValue();
+								
+								if(unitPrice!=null&&unitPrice!=''&&discount!=null&&discount!=''){
+									var newPrice = parseFloat(unitPrice)*parseFloat(newValue)*parseFloat(discount)/100;
+									newPrice.toFixed(2);
+									
+									//set total price
+									var tprice = field.up('container').down('#tprice');
+									tprice.setValue(newPrice);
+								}
+							}
+						}
 					},
 					{
 						xtype: 'textfield',
 						value: booking.get('discount'),
 						name : 'discount',
-						fieldLabel: 'Discount'
+						fieldLabel: 'Discount',
+						itemId: 'disc',
+						listeners:{
+							change: function(field, newValue, oldValue, eOpts ){
+								
+								//get unit price
+								var uprice = field.up('container').down('#uprice');
+								var unitPrice = uprice.getValue();
+								
+								//get quantity
+								var Qty = field.up('container').down('#Qty');
+								var quantity = Qty.getValue();
+								
+								if(unitPrice!=null&&unitPrice!=''&&quantity!=null&&quantity!=''){
+									var newPrice = parseFloat(unitPrice)*parseFloat(quantity)*parseFloat(newValue)/100;
+									newPrice.toFixed(2);
+									
+									//set total price
+									var tprice = field.up('container').down('#tprice');
+									tprice.setValue(newPrice);
+								}
+							}
+						}
 					}
 					]			
 			}]);
@@ -187,30 +283,134 @@ Ext.define('Test.view.edit.Order', {
 						valueField: 'product_id',
 						queryMode: 'local',
 						typeAhead: true,
-						allowBlank: false
+						allowBlank: false,
+						listeners:{
+							select: function(combo, records, eOpts){
+								var uprice = combo.up('container').down('#uprice');
+								uprice.setValue(records[0].get('product_price'));
+							},
+							expand: function(c){
+								this.store.load();
+							}
+						}
 					},
 					{
 						xtype: 'textfield',
 						name : 'booking_price',
-						fieldLabel: 'Price'
+						itemId: 'tprice',
+						fieldLabel: 'Price',
+						listeners:{
+							change: function(field, newValue, oldValue, eOpts ){
+								
+								var form = field.up('container').up('container');
+								var order = form.down('fieldset');
+								var orderPrice=order.down('#odprice');
+								
+								var booking = order.nextSibling('fieldset');
+								var newPrice = 0.0;
+								
+								while(booking){
+									var tprice = booking.down('#tprice').getValue();
+									if(tprice==null||tprice=='')
+										break;
+									newPrice = newPrice + parseFloat(tprice);	
+									booking = booking.nextSibling('fieldset');
+								}
+								
+								if(booking==null){
+									orderPrice.setValue(newPrice);
+								}
+								
+							}
+						}
 					},
 					{
 						xtype: 'textfield',
 						name : 'unit_price',
-						fieldLabel: 'Unit Price'
+						itemId: 'uprice',
+						fieldLabel: 'Unit Price',
+						listeners:{
+							change: function(field, newValue, oldValue, eOpts ){
+								
+								//get quantity
+								var Qty = field.up('container').down('#Qty');
+								var quantity = Qty.getValue();
+								
+								//get discount
+								var disc = field.up('container').down('#disc');
+								var discount = disc.getValue();
+								
+								if(quantity!=null&&quantity!=''&&discount!=null&&discount!=''){
+									var newPrice = parseFloat(quantity)*parseFloat(newValue)*parseFloat(discount)/100;
+									newPrice.toFixed(2);
+									
+									//set total price
+									var tprice = field.up('container').down('#tprice');
+									tprice.setValue(newPrice);
+								}
+							}
+						}
 					},
 					{
 						xtype: 'textfield',
 						name : 'booking_qty',
-						fieldLabel: 'Qty'
+						fieldLabel: 'Qty',
+						itemId: 'Qty',
+						listeners:{
+							change: function(field, newValue, oldValue, eOpts ){
+								
+								//get unit price
+								var uprice = field.up('container').down('#uprice');
+								var unitPrice = uprice.getValue();
+								
+								//get discount
+								var disc = field.up('container').down('#disc');
+								var discount = disc.getValue();
+								
+								if(unitPrice!=null&&unitPrice!=''&&discount!=null&&discount!=''){
+									var newPrice = parseFloat(unitPrice)*parseFloat(newValue)*parseFloat(discount)/100;
+									newPrice.toFixed(2);
+									
+									//set total price
+									var tprice = field.up('container').down('#tprice');
+									tprice.setValue(newPrice);
+								}
+							}
+						}
 					},
 					{
 						xtype: 'textfield',
 						name : 'discount',
-						fieldLabel: 'Discount'
+						fieldLabel: 'Discount',
+						itemId: 'disc',
+						listeners:{
+							change: function(field, newValue, oldValue, eOpts ){
+								
+								//get unit price
+								var uprice = field.up('container').down('#uprice');
+								var unitPrice = uprice.getValue();
+								
+								//get quantity
+								var Qty = field.up('container').down('#Qty');
+								var quantity = Qty.getValue();
+								
+								if(unitPrice!=null&&unitPrice!=''&&quantity!=null&&quantity!=''){
+									var newPrice = parseFloat(unitPrice)*parseFloat(quantity)*parseFloat(newValue)/100;
+									newPrice.toFixed(2);
+									
+									//set total price
+									var tprice = field.up('container').down('#tprice');
+									tprice.setValue(newPrice);
+								}
+							}
+						}
 					}
 					]			
 			}]);
+	},
+	
+	getTotalPrice: function(){
+		
 	},
 	
 	removeBooking: function(){
