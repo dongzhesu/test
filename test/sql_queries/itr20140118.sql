@@ -1,0 +1,1 @@
+update tproduct set product_desc = product_name where product_desc like '%Desc';
