@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoice" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.853116706110006"/>
 	<property name="ireport.x" value="843"/>
-	<property name="ireport.y" value="1078"/>
+	<property name="ireport.y" value="1086"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -219,7 +219,7 @@
 				</staticText>
 				<staticText>
 					<reportElement style="SubTitle" x="80" y="5" width="101" height="20"/>
-					<textElement textAlignment="Center" markup="none">
+					<textElement textAlignment="Left" markup="none">
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Description]]></text>
@@ -241,9 +241,9 @@
 				<staticText>
 					<reportElement style="SubTitle" x="301" y="5" width="59" height="20"/>
 					<textElement textAlignment="Center" markup="none">
-						<font size="12" isBold="true"/>
+						<font size="10" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Discount]]></text>
+					<text><![CDATA[Discount (%)]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="SubTitle" x="365" y="2" width="62" height="25"/>
@@ -254,14 +254,14 @@
 				</staticText>
 				<staticText>
 					<reportElement style="SubTitle" x="432" y="4" width="59" height="20"/>
-					<textElement textAlignment="Center" markup="none">
+					<textElement textAlignment="Right" markup="none">
 						<font size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Qty (bot)]]></text>
 				</staticText>
 				<staticText>
 					<reportElement style="SubTitle" x="496" y="3" width="56" height="24"/>
-					<textElement textAlignment="Center" markup="none">
+					<textElement textAlignment="Right" markup="none">
 						<font size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Total Amount]]></text>
@@ -279,7 +279,7 @@
 				</staticText>
 				<textField>
 					<reportElement style="Detail" isPrintRepeatedValues="false" x="498" y="12" width="54" height="15"/>
-					<textElement/>
+					<textElement textAlignment="Right"/>
 					<textFieldExpression><![CDATA[$F{TOTAL_AMOUNT}]]></textFieldExpression>
 				</textField>
 			</band>
@@ -383,42 +383,44 @@
 		<band height="31" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
 				<reportElement style="Detail" x="8" y="7" width="67" height="15" isPrintWhenDetailOverflows="true"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{PRODUCT_CODE}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement style="Detail" x="80" y="7" width="101" height="15" isPrintWhenDetailOverflows="true"/>
-				<textElement/>
+				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$F{PRODUCT_DESC}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement style="Detail" x="185" y="7" width="44" height="15" isPrintWhenDetailOverflows="true"/>
-				<textElement/>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{PRODUCT_YEAR}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement style="Detail" x="234" y="7" width="61" height="15" isPrintWhenDetailOverflows="true"/>
-				<textElement/>
+				<textElement textAlignment="Right">
+					<font isStrikeThrough="false"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{PRODUCT_PRICE}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement style="Detail" x="365" y="7" width="62" height="15" isPrintWhenDetailOverflows="true"/>
-				<textElement/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{UNIT_PRICE}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement style="Detail" x="301" y="7" width="59" height="15" isPrintWhenDetailOverflows="true"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{DISCOUNT}]]></textFieldExpression>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{DISCOUNT}+"%"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement style="Detail" x="434" y="7" width="57" height="15" isPrintWhenDetailOverflows="true"/>
-				<textElement/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{BOOKING_QTY}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement style="Detail" x="498" y="7" width="54" height="15" isPrintWhenDetailOverflows="true"/>
-				<textElement/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{TOTAL_ITEM_AMOUNT}]]></textFieldExpression>
 			</textField>
 		</band>
