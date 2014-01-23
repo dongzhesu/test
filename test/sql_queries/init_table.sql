@@ -74,6 +74,8 @@ create table tbooking(
 	booking_last_modified_time TIMESTAMP NOT NULL default now(),
 	CONSTRAINT tbooking_order_id_fk FOREIGN KEY (order_id) REFERENCES torder (order_id),
 	CONSTRAINT tbooking_product_id_fk FOREIGN KEY (product_id) REFERENCES tproduct (product_id),
+	CONSTRAINT discount_lowest_check CHECK (discount >= 0),
+	CONSTRAINT discount_highest_check CHECK (discount < 100),
 	PRIMARY KEY (order_id, product_id)
 );
 
