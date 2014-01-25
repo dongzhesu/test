@@ -226,11 +226,15 @@ Ext.define('Test.view.edit.Order', {
 						}
 					},
 					{
-						xtype: 'textfield',
+						xtype: 'numberfield',
 						value: booking.get('discount'),
 						name : 'discount',
 						fieldLabel: 'Discount',
 						itemId: 'disc',
+						allowNegative: false,
+		                minValue: 0,
+		                maxValue: 99.99,
+		                value: 0,
 						listeners:{
 							change: function(field, newValue, oldValue, eOpts ){
 								
@@ -393,10 +397,13 @@ Ext.define('Test.view.edit.Order', {
 						}
 					},
 					{
-						xtype: 'textfield',
+						xtype: 'numberfield',
 						name : 'discount',
 						fieldLabel: 'Discount',
 						itemId: 'disc',
+						allowNegative: false,
+		                minValue: 0,
+		                maxValue: 99.99,
 						listeners:{
 							change: function(field, newValue, oldValue, eOpts ){
 								

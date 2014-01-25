@@ -71,8 +71,11 @@ Ext.define('Test.view.edit.Booking', {
                 fieldLabel: 'Qty'
             },
             {
-                xtype: 'textfield',
+                xtype: 'numberfield',
                 name : 'discount',
+                allowNegative: false,
+                minValue: 0,
+                maxValue: 99.99,
                 fieldLabel: 'Discount'
             }]
         }];
