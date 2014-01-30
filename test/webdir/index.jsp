@@ -1,6 +1,11 @@
+<%@page contentType="text/html;charset=UTF-8"%>
+<%
+Object userLoginObj = request.getSession().getAttribute("userLogin");
+if (userLoginObj == null) response.sendRedirect("LoginServlet");
+else {
+%>
 <html>
 <head>
-<%@page contentType="text/html;charset=UTF-8"%>
 <meta http-equiv=Content-Type content="text/html; charset=UTF-8"/>
 <title>ERP CHINA</title>
     <!--Import CSS-->
@@ -15,3 +20,6 @@
 <body>
 </body>
 </html>
+<%
+}
+%>
