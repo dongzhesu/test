@@ -187,7 +187,7 @@ Ext.define('Test.view.edit.Order', {
 								var discount = disc.getValue();
 								
 								if(quantity!=null&&quantity!=''&&discount!=null&&discount!=''){
-									var newPrice = parseFloat(quantity)*parseFloat(newValue)*parseFloat(discount)/100;
+									var newPrice = (parseFloat(quantity)*parseFloat(newValue))-(parseFloat(quantity)*parseFloat(newValue)*parseFloat(discount)/100);
 									newPrice.toFixed(2);
 									
 									//set total price
@@ -215,7 +215,7 @@ Ext.define('Test.view.edit.Order', {
 								var discount = disc.getValue();
 								
 								if(unitPrice!=null&&unitPrice!=''&&discount!=null&&discount!=''){
-									var newPrice = parseFloat(unitPrice)*parseFloat(newValue)*parseFloat(discount)/100;
+									var newPrice = (parseFloat(unitPrice)*parseFloat(newValue))-(parseFloat(unitPrice)*parseFloat(newValue)*parseFloat(discount)/100);
 									newPrice.toFixed(2);
 									
 									//set total price
@@ -247,7 +247,7 @@ Ext.define('Test.view.edit.Order', {
 								var quantity = Qty.getValue();
 								
 								if(unitPrice!=null&&unitPrice!=''&&quantity!=null&&quantity!=''){
-									var newPrice = parseFloat(unitPrice)*parseFloat(quantity)*parseFloat(newValue)/100;
+									var newPrice = (parseFloat(unitPrice)*parseFloat(quantity))-(parseFloat(unitPrice)*parseFloat(quantity)*parseFloat(newValue)/100);
 									newPrice.toFixed(2);
 									
 									//set total price
@@ -272,22 +272,6 @@ Ext.define('Test.view.edit.Order', {
 			defaults:{anchor:'100%'},
 			layout:'anchor',
 			items:[
-//			       {
-//						xtype: 'combo',
-//						name : 'product_id',
-//						fieldLabel: 'Product Name',
-//						editable: false,
-//						emptyText: 'Please select',
-//						store: Ext.create('Test.store.Products'),
-//						valueField: 'product_id',
-//						displayField: 'product_name',
-//						allowBlank: false,
-//						listeners:{
-//							expand: function(c){
-//								this.store.load();
-//							}
-//						}
-//					},
 			       {
 						xtype: 'combo',
 						name : 'product_id',
@@ -329,7 +313,7 @@ Ext.define('Test.view.edit.Order', {
 								
 								while(booking){
 									var tprice = booking.down('#tprice').getValue();
-									if(tprice==null||tprice=='')
+									if (tprice==null||tprice=='')
 										break;
 									newPrice = newPrice + parseFloat(tprice);	
 									booking = booking.nextSibling('fieldset');
@@ -338,7 +322,6 @@ Ext.define('Test.view.edit.Order', {
 								if(booking==null){
 									orderPrice.setValue(newPrice);
 								}
-								
 							}
 						}
 					},
@@ -359,7 +342,7 @@ Ext.define('Test.view.edit.Order', {
 								var discount = disc.getValue();
 								
 								if(quantity!=null&&quantity!=''&&discount!=null&&discount!=''){
-									var newPrice = parseFloat(quantity)*parseFloat(newValue)*parseFloat(discount)/100;
+									var newPrice = (parseFloat(quantity)*parseFloat(newValue))-(parseFloat(quantity)*parseFloat(newValue)*parseFloat(discount)/100);
 									newPrice.toFixed(2);
 									
 									//set total price
@@ -386,7 +369,7 @@ Ext.define('Test.view.edit.Order', {
 								var discount = disc.getValue();
 								
 								if(unitPrice!=null&&unitPrice!=''&&discount!=null&&discount!=''){
-									var newPrice = parseFloat(unitPrice)*parseFloat(newValue)*parseFloat(discount)/100;
+									var newPrice = (parseFloat(unitPrice)*parseFloat(newValue))-(parseFloat(unitPrice)*parseFloat(newValue)*parseFloat(discount)/100);
 									newPrice.toFixed(2);
 									
 									//set total price
@@ -416,7 +399,7 @@ Ext.define('Test.view.edit.Order', {
 								var quantity = Qty.getValue();
 								
 								if(unitPrice!=null&&unitPrice!=''&&quantity!=null&&quantity!=''){
-									var newPrice = parseFloat(unitPrice)*parseFloat(quantity)*parseFloat(newValue)/100;
+									var newPrice = (parseFloat(unitPrice)*parseFloat(quantity))-(parseFloat(unitPrice)*parseFloat(quantity)*parseFloat(newValue)/100);
 									newPrice.toFixed(2);
 									
 									//set total price
