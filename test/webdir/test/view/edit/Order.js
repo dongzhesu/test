@@ -234,7 +234,6 @@ Ext.define('Test.view.edit.Order', {
 						allowNegative: false,
 		                minValue: 0,
 		                maxValue: 99.99,
-		                value: 0,
 						listeners:{
 							change: function(field, newValue, oldValue, eOpts ){
 								
