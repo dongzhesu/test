@@ -26,11 +26,14 @@ public class LoginServlet extends HttpServlet {
 			String password = Util.getParameter(request, "password");
 			UserService userService = UserService.getInstance();
 			User user = userService.fetchUserLogin(username, password);
+			HttpSession session = request.getSession(true);
 			if (user != null) {
-				HttpSession session = request.getSession(true);
-				session.setAttribute("currentUserLogin", user);
+				session.setAttribute("userLogin", user);
 				response.sendRedirect("index.jsp"); //logged-in page
-			} else response.sendRedirect("login.jsp"); //error page
+			} else {
+				session.setAttribute("errorLogin", true);
+				response.sendRedirect("login.jsp"); //error page
+			}
 		} catch (Throwable theException) {
 			System.out.println(theException);
 		}

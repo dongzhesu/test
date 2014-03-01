@@ -2,6 +2,7 @@ package com.erp.china.demo.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -32,12 +33,16 @@ import com.erp.china.demo.util.Constants;
 @RequestMapping("/BK")
 public class BookingController {
 	private BookingService bookingService;
+	private OrderService orderService;
 	private Logger logger;
 
 	public BookingController() {
 		logger = Logger.getLogger(BookingController.class);
 		if (bookingService == null) {
 			bookingService = BookingService.getInstance();
+		}
+		if (orderService == null) {
+			orderService = OrderService.getInstance();
 		}
 	}
 
@@ -156,8 +161,19 @@ public class BookingController {
 	@RequestMapping(value="update", method = RequestMethod.PUT)
 	public @ResponseBody Map update(@RequestBody Map requestMap) {
 		Booking entity = new Booking();
-		Order order = OrderService.getInstance().loadOrder(requestMap.get("order_id").toString());
+		Order order = orderService.loadOrder(requestMap.get("order_id").toString());
 		Product product = ProductService.getInstance().loadProduct(requestMap.get("product_id").toString());
+		List bookingList = bookingService.getBookingList(order);
+		double orderBookingPrice = 0;
+		for (int i=0; i<bookingList.size(); i++) {
+			Booking booking = (Booking) bookingList.get(i);
+			BookingKey bookingKey = booking.getBookingId();
+			if (requestMap.get("order_id").toString().equals(bookingKey.getOrder().getOrderId()) && requestMap.get("product_id").toString().equals(bookingKey.getProduct().getProductId())) {
+				orderBookingPrice = orderBookingPrice + (requestMap.get("booking_price")!=null?Double.parseDouble(requestMap.get("booking_price").toString()):0);
+			} else orderBookingPrice = orderBookingPrice + booking.getBookingPrice();
+		}
+		order.setOrderPrice(orderBookingPrice);
+		orderService.updateOrder(order);
 		BookingKey bookingId = new BookingKey();
 		bookingId.setOrder(order);
 		bookingId.setProduct(product);
@@ -166,6 +182,7 @@ public class BookingController {
 		entity.setUnitPrice(requestMap.get("unit_price")!=null?Double.parseDouble(requestMap.get("unit_price").toString()):0);
 		entity.setBookingQty(requestMap.get("booking_qty")!=null?Integer.parseInt(requestMap.get("booking_qty").toString()):0);
 		entity.setDiscount(requestMap.get("discount")!=null?Integer.parseInt(requestMap.get("discount").toString()):100);
+		entity.setBookingStatus(requestMap.get("booking_price")!=null?requestMap.get("booking_price").toString():"");
 		bookingService.updateBooking(entity);
 		Map resultMap = new HashMap();
 		resultMap.put("success", true);

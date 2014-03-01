@@ -63,9 +63,8 @@ Ext.define('Test.controller.sub.BookingController', {
         var selection = grid.getSelectionModel().getSelection();
 		if(selection && selection.length>0){
 			var win = this.getEditWin();
-			win.setTitle(Test.getTitle('Booking','Edit') + ' - ['+selection[0].get('order_name')+']');
+			win.setTitle(Test.getTitle('Booking','Edit') + ' - ['+selection[0].get('order_number')+']');
 			win.loadRecord(selection[0], true);
-
 			win.show();
 		}
 		else{

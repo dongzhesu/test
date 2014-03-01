@@ -6,7 +6,7 @@ Ext.define('Test', {
 	SELECT_REMIND_TPL: 'Please select {0} first!',
 	CONFIRMATION:'Are you sure to {0} selected {1}', 
 	CONFIRMATION_T: 'Confirm {0}',
-	LOGOUT_URL: '/ERP_demo/logout',
+	LOGOUT_URL: 'login.jsp',
 	//modules
 	modules: {},
 	//logon user

@@ -1,6 +1,6 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <%
-Object userLoginObj = request.getSession().getAttribute("userLogin");
+Object userLoginObj = session.getAttribute("userLogin");
 if (userLoginObj == null) response.sendRedirect("LoginServlet");
 else {
 %>
