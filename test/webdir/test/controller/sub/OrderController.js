@@ -259,12 +259,13 @@ Ext.define('Test.controller.sub.OrderController', {
                   	text: 'Print Invoice(PDF)'.i18n(),
                   	iconCls: 'btn-pdf',
           			itemId: 'printPDF'
-              	}),
-              	Ext.create('Ext.Action',{
-                  	text: 'Print Invoice(Excel)'.i18n(),
-                  	iconCls: 'btn-excel',
-          			itemId: 'printExcel'
               	})
+//              	,
+//              	Ext.create('Ext.Action',{
+//                  	text: 'Print Invoice(Excel)'.i18n(),
+//                  	iconCls: 'btn-excel',
+//          			itemId: 'printExcel'
+//              	})
               ]
 	
 });
