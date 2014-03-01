@@ -95,6 +95,19 @@ Ext.define('Ext.ux.TabScrollerMenu', {
 
         me.tabPanel = tabPanel;
 
+        var bar = tabPanel.tabBar;
+	                bar.insert(2, [{
+	                    xtype: 'component',
+	                    flex: 1
+	                }, {
+	                    xtype: 'button',
+	                    text: 'Log Out',
+	                    iconCls: 'btn-logout',
+	                    handler: function() {
+	                    	window.location = Test.LOGOUT_URL;
+	                    }
+	                }]);
+	                
         tabPanel.on({
             render: function() {
                 me.tabBar = tabPanel.tabBar;

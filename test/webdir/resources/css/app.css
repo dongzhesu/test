@@ -82,6 +82,10 @@
 }
 
 /************************ ************************/
+.btn-logout {
+    background-image: url(../images/exit.png) !important;
+    background-size: 16px 16px;
+}
 .btn-add {
     background-image: url(../images/create.png) !important;
     background-size: 16px 16px;
