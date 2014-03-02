@@ -8,15 +8,15 @@ Ext.define('Test.controller.sub.BookingController', {
     init: function (module) {
 	    this.module= module;
         this.control({
-            '#addBooking': {
-                click: this.onAddBookingClick
-            },
+            //'#addBooking': {
+            //    click: this.onAddBookingClick
+            //},
             '#editBooking': {
                 click: this.onEditBookingClick
             },
-            '#deleteBooking': {
-                click: this.onDeleteBookingClick
-            },
+            //'#deleteBooking': {
+            //    click: this.onDeleteBookingClick
+            //},
     		'bookingEdit button[action=save]': {
     			click: this.updateBooking
     		}
@@ -136,21 +136,21 @@ Ext.define('Test.controller.sub.BookingController', {
     },
     
     actionItems: [
-              	Ext.create('Ext.Action',{
-                  	text: 'Add Booking'.i18n(),
-                  	iconCls: 'btn-add',
-          			itemId: 'addBooking'
-              	}),
+              	//Ext.create('Ext.Action',{
+                //  	text: 'Add Booking'.i18n(),
+                //  	iconCls: 'btn-add',
+          		//	itemId: 'addBooking'
+              	//}),
               	Ext.create('Ext.Action',{
                   	text: 'Edit'.i18n(),
                   	iconCls: 'btn-edit',
           			itemId: 'editBooking',
-              	}),
-              	Ext.create('Ext.Action',{
-                  	text: 'Delete'.i18n(),
-                  	iconCls: 'btn-delete',
-          			itemId: 'deleteBooking',
               	})
+              	//Ext.create('Ext.Action',{
+                //  	text: 'Delete'.i18n(),
+                //  	iconCls: 'btn-delete',
+          		//	itemId: 'deleteBooking',
+              	//})
               ]
 	
 });

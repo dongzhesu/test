@@ -18,7 +18,7 @@ Ext.define('Test.view.edit.Booking', {
 			    valueField: 'order_id',
 			    displayField: 'order_number',
 			    allowBlank: false,
-			    
+			    disabled: true,
 			    listeners:{
 			    	expand: function(c){
 			    		this.store.load();
@@ -35,8 +35,8 @@ Ext.define('Test.view.edit.Booking', {
 			    queryMode: 'local',
 			    typeAhead: true,
 			    valueField: 'product_id',
-			    allowBlank: false
-			    
+			    allowBlank: false,
+			    disabled: true
 			},
             {
                 xtype: 'textfield',
