@@ -31,6 +31,9 @@ public class Order {
 	@Column(name="remarks")
 	private String remarks;
 
+	@Column(name="order_status")
+	private String orderStatus;
+
 	@Column(name="order_create_time")
 	private java.util.Date createdDate;
 
@@ -101,6 +104,14 @@ public class Order {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 	public java.util.Date getCreatedDate() {

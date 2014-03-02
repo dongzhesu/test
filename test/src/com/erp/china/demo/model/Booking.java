@@ -21,6 +21,9 @@ public class Booking {
 	@Column(name="booking_price")
 	private double bookingPrice;
 
+	@Column(name="booking_status")
+	private String bookingStatus;
+
 	@Column(name="booking_create_time")
 	private java.util.Date createdDate;
 
@@ -65,6 +68,14 @@ public class Booking {
 
 	public void setBookingPrice(double bookingPrice) {
 		this.bookingPrice = bookingPrice;
+	}
+
+	public String getBookingStatus() {
+		return bookingStatus;
+	}
+
+	public void setBookingStatus(String bookingStatus) {
+		this.bookingStatus = bookingStatus;
 	}
 
 	public java.util.Date getCreatedDate() {

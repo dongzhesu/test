@@ -1,8 +1,6 @@
 package com.erp.china.demo.dao;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -71,6 +69,7 @@ public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 		existingBooking.setUnitPrice(booking.getUnitPrice());
 		existingBooking.setDiscount(booking.getDiscount());
 		existingBooking.setBookingPrice(booking.getBookingPrice());
+		existingBooking.setBookingStatus(booking.getBookingStatus());
 		existingBooking.setLastModifiedDate(new java.util.Date());
 		session.saveOrUpdate(existingBooking);
 		tx.commit();
