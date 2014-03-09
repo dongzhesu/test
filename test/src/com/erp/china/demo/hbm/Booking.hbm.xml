@@ -8,7 +8,7 @@
 		</composite-id>
 		<property name="bookingQty" type="java.lang.Integer" column="booking_qty" not-null="false" />
 		<property name="unitPrice" type="java.lang.Double" column="unit_price" not-null="false" />
-		<property name="discount" type="java.lang.Integer" column="discount" not-null="false" />
+		<property name="discount" type="java.lang.Double" column="discount" not-null="false" />
 		<property name="bookingPrice" type="java.lang.Double" column="booking_price" not-null="false" />
 		<property name="bookingStatus" type="java.lang.String" column="booking_status" not-null="false" />
 		<property name="createdDate" type="java.util.Date" column="booking_create_time" not-null="true" />

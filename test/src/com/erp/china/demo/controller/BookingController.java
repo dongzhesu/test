@@ -147,7 +147,7 @@ public class BookingController {
 			entityMap.put("booking_price", Double.toString(entity.getBookingPrice()));
 			entityMap.put("unit_price", Double.toString(entity.getUnitPrice()));
 			entityMap.put("booking_qty", Integer.toString(entity.getBookingQty()));
-			entityMap.put("discount", Integer.toString(entity.getDiscount()));
+			entityMap.put("discount", Double.toString(entity.getDiscount()));
 			
 			entityMap.put(Constants.CREATED_DATE, entity.getCreatedDate().toString());
 			entityMap.put(Constants.LAST_MODIFIED_DATE, entity.getLastModifiedDate().toString());
@@ -181,7 +181,7 @@ public class BookingController {
 		entity.setBookingPrice(requestMap.get("booking_price")!=null?Double.parseDouble(requestMap.get("booking_price").toString()):0);
 		entity.setUnitPrice(requestMap.get("unit_price")!=null?Double.parseDouble(requestMap.get("unit_price").toString()):0);
 		entity.setBookingQty(requestMap.get("booking_qty")!=null?Integer.parseInt(requestMap.get("booking_qty").toString()):0);
-		entity.setDiscount(requestMap.get("discount")!=null?Integer.parseInt(requestMap.get("discount").toString()):100);
+		entity.setDiscount(requestMap.get("discount")!=null?Double.parseDouble(requestMap.get("discount").toString()):100);
 		entity.setBookingStatus(requestMap.get("booking_price")!=null?requestMap.get("booking_price").toString():"");
 		bookingService.updateBooking(entity);
 		Map resultMap = new HashMap();
@@ -201,7 +201,7 @@ public class BookingController {
 		entity.setBookingPrice(requestMap.get("booking_price")!=null?Double.parseDouble(requestMap.get("booking_price").toString()):0);
 		entity.setUnitPrice(requestMap.get("unit_price")!=null?Double.parseDouble(requestMap.get("unit_price").toString()):0);
 		entity.setBookingQty(requestMap.get("booking_qty")!=null?Integer.parseInt(requestMap.get("booking_qty").toString()):0);
-		entity.setDiscount(requestMap.get("discount")!=null?Integer.parseInt(requestMap.get("discount").toString()):100);
+		entity.setDiscount(requestMap.get("discount")!=null?Double.parseDouble(requestMap.get("discount").toString()):100);
 		bookingService.createBooking(entity);
 		Map resultMap = new HashMap();
 		resultMap.put("success", true);

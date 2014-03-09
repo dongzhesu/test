@@ -42,7 +42,28 @@ Ext.define('Test.view.edit.Booking', {
                 xtype: 'textfield',
                 name : 'booking_price',
                 itemId: 'tprice',
-                fieldLabel: 'Price'
+                fieldLabel: 'Price',
+                listeners:{
+					change: function(field, newValue, oldValue, eOpts) {
+						//get unit price
+						var uprice = field.up('container').down('#unit_price');
+						var unitPrice = uprice.getValue();
+						
+						//get quantity
+						var bookingQty = field.up('container').down('#booking_qty');
+						var quantity = bookingQty.getValue();
+						
+						if (unitPrice!=null&&unitPrice!=''&&quantity!=null&&quantity!='') {
+							var originalTotalPrice = parseFloat(unitPrice)*parseFloat(quantity);
+							var newDiscount = ((originalTotalPrice-parseFloat(newValue)) / originalTotalPrice) * 100;
+							newDiscount.toFixed(2);
+							
+							//set discount
+							var discField = field.up('container').down('#discount');
+							discField.setValue(newDiscount);
+						}
+					}
+				}
             },
             {
                 xtype: 'textfield',

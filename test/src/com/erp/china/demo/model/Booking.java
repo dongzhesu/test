@@ -16,7 +16,7 @@ public class Booking {
 	private double unitPrice;
 
 	@Column(name="discount")
-	private int discount;
+	private double discount;
 
 	@Column(name="booking_price")
 	private double bookingPrice;
@@ -54,11 +54,11 @@ public class Booking {
 		this.unitPrice = unitPrice;
 	}
 
-	public int getDiscount() {
+	public double getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(int discount) {
+	public void setDiscount(double discount) {
 		this.discount = discount;
 	}
 

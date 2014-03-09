@@ -67,7 +67,7 @@ create table tbooking(
 	product_id                 VARCHAR(25) NOT NULL,
 	booking_qty                INTEGER NOT NULL default 0,
 	unit_price                 NUMERIC(10,2) NOT NULL default 0,
-	discount                   INTEGER NOT NULL default 0,
+	discount                   NUMERIC(11,3) NOT NULL default 0,
 	booking_price              NUMERIC(10,2) NOT NULL default 0,
 	booking_status             VARCHAR(25),
 	booking_create_time        TIMESTAMP NOT NULL default now(),
