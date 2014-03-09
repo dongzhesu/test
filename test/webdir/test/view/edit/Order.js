@@ -302,8 +302,7 @@ Ext.define('Test.view.edit.Order', {
 						itemId: 'tprice',
 						fieldLabel: 'Price',
 						listeners:{
-							change: function(field, newValue, oldValue, eOpts ){
-								
+							change: function(field, newValue, oldValue, eOpts ) {
 								var form = field.up('container').up('container');
 								var order = form.down('fieldset');
 								var orderPrice=order.down('#odprice');
@@ -311,6 +310,23 @@ Ext.define('Test.view.edit.Order', {
 								var booking = order.nextSibling('fieldset');
 								var newPrice = 0.0;
 								
+								//get unit quantity
+								var Qty = field.up('container').down('#Qty');
+								var quantity = Qty.getValue();
+
+								//get unit price
+								var uprice = field.up('container').down('#uprice');
+								var unitPrice = uprice.getValue();
+								
+								if (quantity!=null&&quantity!=''&&unitPrice!=null&&unitPrice!='') {
+									var originalTotalPrice = parseFloat(unitPrice)*parseFloat(quantity);
+									var newDiscount = ((originalTotalPrice-parseFloat(newValue)) / originalTotalPrice) * 100;
+									newDiscount.toFixed(2);
+									
+									//set discount
+									var discField = field.up('container').down('#disc');
+									discField.setValue(newDiscount);
+								}
 								while(booking){
 									var tprice = booking.down('#tprice').getValue();
 									if (tprice==null||tprice=='') break;
