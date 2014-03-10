@@ -116,12 +116,14 @@ Ext.define('Test.view.edit.Order', {
 			       {
 						xtype: 'combo',
 						name : 'product_id',
-						fieldLabel: 'Product Name',
-						editable: false,
+						fieldLabel: 'Product Code',
+						//editable: false,
 						emptyText: 'Please select',
+						displayField: 'product_code',
 						store: Ext.create('Test.store.Products').load(),
 						valueField: 'product_id',
-						displayField: 'product_name',
+						queryMode: 'local',
+						typeAhead: true,
 						allowBlank: false,
 						value: booking.get('product_id'),
 						listeners:{
@@ -142,7 +144,7 @@ Ext.define('Test.view.edit.Order', {
 						name : 'booking_price',
 						itemId: 'tprice',
 						value: booking.get('booking_price'),
-						fieldLabel: 'Price',
+						fieldLabel: 'Amount',
 						listeners:{
 							change: function(field, newValue, oldValue, eOpts ){
 								
@@ -273,9 +275,9 @@ Ext.define('Test.view.edit.Order', {
 			       {
 						xtype: 'combo',
 						name : 'product_id',
-						fieldLabel: 'Product Name',
+						fieldLabel: 'Product Code',
 			    		emptyText: 'Please select',
-						displayField: 'product_name',
+						displayField: 'product_code',
 						store: Ext.create('Test.store.Products').load(),
 						valueField: 'product_id',
 						queryMode: 'local',
@@ -300,7 +302,7 @@ Ext.define('Test.view.edit.Order', {
 						xtype: 'textfield',
 						name : 'booking_price',
 						itemId: 'tprice',
-						fieldLabel: 'Price',
+						fieldLabel: 'Amount',
 						listeners:{
 							change: function(field, newValue, oldValue, eOpts ) {
 								var form = field.up('container').up('container');
