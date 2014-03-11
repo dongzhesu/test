@@ -207,8 +207,10 @@ Ext.define('Test.controller.sub.OrderController', {
                            			 product_id=nextEL.getValue();
                            		 if(nextEL.name=='booking_price')
                            			 booking_price=nextEL.getValue();
-                           		 if(nextEL.name=='unit_price')
-                           			 unit_price=nextEL.getValue();
+                           		 if(nextEL.name=='unit_price_container') {
+                           			 var unitPrice = nextEL.items.items[0];
+                           			 if (unitPrice.name=='unit_price') unit_price=unitPrice.getValue();
+                           		 }
                            		 if(nextEL.name=='booking_qty')
                            			 booking_qty=nextEL.getValue();
                            		 if(nextEL.name=='discount')
@@ -224,7 +226,6 @@ Ext.define('Test.controller.sub.OrderController', {
                            		 		unit_price:unit_price,
                            		 		booking_qty:booking_qty,
                            		 		discount:discount
-                           		 		
                            		 });
                            	 bookingRec.save();
                            	 
