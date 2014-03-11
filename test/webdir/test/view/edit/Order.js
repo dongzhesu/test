@@ -129,10 +129,12 @@ Ext.define('Test.view.edit.Order', {
 						listeners:{
 							select: function(combo, records, eOpts){
 								var uprice = combo.up('container').down('#uprice');
+								var ori_uprice = combo.up('container').down('#ori_uprice');
 								var type_price = records[0].get('product_price');
 								if(combo.up('window').customertype=='Trade')
 									type_price = records[0].get('product_price2');
 								uprice.setValue(type_price);
+								ori_uprice.setValue(type_price);
 							},
 							expand: function(c){
 								this.store.load();
@@ -155,6 +157,24 @@ Ext.define('Test.view.edit.Order', {
 								var booking = order.nextSibling('fieldset');
 								var newPrice = 0.0;
 								
+								//get unit quantity
+								var Qty = field.up('container').down('#Qty');
+								var quantity = Qty.getValue();
+
+								//get unit price
+								var uprice = field.up('container').down('#uprice');
+								var unitPrice = uprice.getValue();
+								
+								if (field.value.length>2&&quantity!=null&&quantity!=''&&unitPrice!=null&&unitPrice!='') {
+									var originalTotalPrice = parseFloat(unitPrice)*parseFloat(quantity);
+									var newDiscount = ((originalTotalPrice-parseFloat(newValue)) / originalTotalPrice) * 100;
+									newDiscount.toFixed(0);
+									
+									//set discount
+									var discField = field.up('container').down('#disc');
+									discField.setValue(newDiscount);
+								}
+								
 								while(booking){
 									var tprice = booking.down('#tprice').getValue();
 									if(tprice==null||tprice=='')
@@ -171,32 +191,50 @@ Ext.define('Test.view.edit.Order', {
 						}
 					},
 					{
-						xtype: 'textfield',
-						name : 'unit_price',
-						itemId: 'uprice',
-						value: booking.get('unit_price'),
+						xtype : 'fieldcontainer',
+						name : 'unit_price_container',
+						border : true,
+						layout : 'hbox',
 						fieldLabel: 'Unit Price',
-						listeners:{
-							change: function(field, newValue, oldValue, eOpts ){
-								
-								//get quantity
-								var Qty = field.up('container').down('#Qty');
-								var quantity = Qty.getValue();
-								
-								//get discount
-								var disc = field.up('container').down('#disc');
-								var discount = disc.getValue();
-								
-								if(quantity!=null&&quantity!=''&&discount!=null&&discount!=''){
-									var newPrice = (parseFloat(quantity)*parseFloat(newValue))-(parseFloat(quantity)*parseFloat(newValue)*parseFloat(discount)/100);
-									newPrice.toFixed(2);
-									
-									//set total price
-									var tprice = field.up('container').down('#tprice');
-									tprice.setValue(newPrice);
-								}
-							}
-						}
+						defaultType : 'field',
+						items : [
+									{
+										xtype: 'textfield',
+										name : 'unit_price',
+										itemId: 'uprice',
+										value: booking.get('unit_price'),
+										width: '85%',
+										listeners: {
+											change: function(field, newValue, oldValue, eOpts) {
+												//get quantity
+												var Qty = field.up('container').up('container').down('#Qty');
+												var quantity = Qty.getValue();
+
+												//get discount
+												var disc = field.up('container').up('container').down('#disc');
+												var discount = disc.getValue();
+
+												if (quantity!=null&&quantity!=''&&discount!=null&&discount!='') {
+													var newPrice = (parseFloat(quantity)*parseFloat(newValue))-(parseFloat(quantity)*parseFloat(newValue)*parseFloat(discount)/100);
+													newPrice.toFixed(2);
+
+													//set total price
+													var tprice = field.up('container').up('container').down('#tprice');
+													tprice.setValue(newPrice);
+												}
+											}
+										}
+									},
+									{
+										xtype : 'textfield',
+										name : 'original_unit_price',
+										itemId: 'ori_uprice',
+										margin: '0 0 0 7',
+										disabled: true,
+										value: booking.get('unit_price'),
+										width: '14%'
+									}
+						]
 					},
 					{
 						xtype: 'textfield',
@@ -233,8 +271,9 @@ Ext.define('Test.view.edit.Order', {
 						fieldLabel: 'Discount',
 						itemId: 'disc',
 						allowNegative: false,
+						allowDecimals: false,
 		                minValue: 0,
-		                maxValue: 99.99,
+		                maxValue: 99,
 						listeners:{
 							change: function(field, newValue, oldValue, eOpts ){
 								
@@ -320,10 +359,10 @@ Ext.define('Test.view.edit.Order', {
 								var uprice = field.up('container').down('#uprice');
 								var unitPrice = uprice.getValue();
 								
-								if (quantity!=null&&quantity!=''&&unitPrice!=null&&unitPrice!='') {
+								if (field.value.length>2&&quantity!=null&&quantity!=''&&unitPrice!=null&&unitPrice!='') {
 									var originalTotalPrice = parseFloat(unitPrice)*parseFloat(quantity);
 									var newDiscount = ((originalTotalPrice-parseFloat(newValue)) / originalTotalPrice) * 100;
-									newDiscount.toFixed(2);
+									newDiscount.toFixed(0);
 									
 									//set discount
 									var discField = field.up('container').down('#disc');
@@ -419,8 +458,9 @@ Ext.define('Test.view.edit.Order', {
 						fieldLabel: 'Discount',
 						itemId: 'disc',
 						allowNegative: false,
+						allowDecimals: false,
 		                minValue: 0,
-		                maxValue: 99.99,
+		                maxValue: 99,
 						listeners:{
 							change: function(field, newValue, oldValue, eOpts ){
 								
