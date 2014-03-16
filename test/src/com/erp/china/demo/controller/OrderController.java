@@ -229,7 +229,10 @@ public class OrderController {
 		Customer customer = CustomerService.getInstance().loadCustomer(requestMap.get("customer_id").toString());
 		entity.setCustomer(customer);
 		entity.setOrderNumber(requestMap.get("order_number")!=null?requestMap.get("order_number").toString():"");
-		entity.setOrderPrice(requestMap.get("order_price")!=null?Double.parseDouble(requestMap.get("order_price").toString()):0);
+		if(order_price==null||order_price.toString().equals(""))
+			entity.setOrderPrice(0.0);
+		else
+			entity.setOrderPrice(Double.parseDouble(order_price.toString()));
 		entity.setOrderType(requestMap.get("order_type")!=null?requestMap.get("order_type").toString():"");
 		entity.setRemarks(requestMap.get("remarks")!=null?requestMap.get("remarks").toString():"");
 		if(requestMap.get("delivery_date")!=null&&requestMap.get("delivery_date").toString()!=""){
