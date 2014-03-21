@@ -48,6 +48,8 @@ public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 	public List<Booking> bookingList(Order order) {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
+		session.flush();
+		session.clear();
 		List bookingList = session.createQuery("from Booking where order_id = '"+order.getOrderId()+"'").list();
 		if (bookingList == null) bookingList = new ArrayList();
 		return bookingList;
