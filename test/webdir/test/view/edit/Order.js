@@ -147,6 +147,7 @@ Ext.define('Test.view.edit.Order', {
 						itemId: 'tprice',
 						value: booking.get('booking_price'),
 						fieldLabel: 'Amount',
+						allowBlank: false,
 						listeners:{
 							change: function(field, newValue, oldValue, eOpts ){
 								
@@ -237,10 +238,13 @@ Ext.define('Test.view.edit.Order', {
 						]
 					},
 					{
-						xtype: 'textfield',
+						xtype: 'numberfield',
 						name : 'booking_qty',
 						value: booking.get('booking_qty'),
 						fieldLabel: 'Qty',
+						allowNegative: false,
+						allowDecimals: false,
+		                minValue: 1,
 						itemId: 'Qty',
 						listeners:{
 							change: function(field, newValue, oldValue, eOpts ){
@@ -342,6 +346,7 @@ Ext.define('Test.view.edit.Order', {
 						name : 'booking_price',
 						itemId: 'tprice',
 						fieldLabel: 'Amount',
+						allowBlank: false,
 						listeners:{
 							change: function(field, newValue, oldValue, eOpts ) {
 								var form = field.up('container').up('container');
@@ -426,7 +431,10 @@ Ext.define('Test.view.edit.Order', {
 						]
 					},
 					{
-						xtype: 'textfield',
+						xtype: 'numberfield',
+						allowNegative: false,
+						allowDecimals: false,
+		                minValue: 1,
 						name : 'booking_qty',
 						fieldLabel: 'Qty',
 						itemId: 'Qty',
