@@ -41,6 +41,7 @@ public class DBStorageDAO extends AbstractDAO implements StorageDAO {
 		Transaction tx = session.beginTransaction();
 		List storageList = session.createQuery("from Storage").list();
 		if (storageList == null) storageList = new ArrayList();
+		tx.commit();
 		return storageList;
 	}
 
@@ -48,6 +49,7 @@ public class DBStorageDAO extends AbstractDAO implements StorageDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Storage storage = (Storage) session.load(Storage.class, storageId);
+		tx.commit();
 		return storage;
 	}
 

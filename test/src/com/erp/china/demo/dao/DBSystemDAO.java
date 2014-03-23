@@ -26,6 +26,7 @@ public class DBSystemDAO extends AbstractDAO implements SystemDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		System system = (System) session.load(System.class, systemId);
+		tx.commit();
 		return system;
 	}
 

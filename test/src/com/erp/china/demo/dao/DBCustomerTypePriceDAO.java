@@ -51,6 +51,7 @@ public class DBCustomerTypePriceDAO extends AbstractDAO implements CustomerTypeP
 		Transaction tx = session.beginTransaction();
 		List customerTypePriceList = session.createQuery("from CustomerTypePrice").list();
 		if (customerTypePriceList == null) customerTypePriceList = new ArrayList();
+		tx.commit();
 		return customerTypePriceList;
 	}
 
@@ -60,6 +61,7 @@ public class DBCustomerTypePriceDAO extends AbstractDAO implements CustomerTypeP
 		Query query = session.createQuery("from CustomerTypePrice where product_id = '"+product.getProductId()+"'");
 		List customerTypePriceList = query.list();
 		if (customerTypePriceList == null) customerTypePriceList = new ArrayList();
+		tx.commit();
 		return customerTypePriceList;
 	}
 
@@ -67,6 +69,7 @@ public class DBCustomerTypePriceDAO extends AbstractDAO implements CustomerTypeP
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		CustomerTypePrice customerTypePrice = (CustomerTypePrice) session.load(CustomerTypePrice.class, typeId);
+		tx.commit();
 		return customerTypePrice;
 	}
 
@@ -79,6 +82,7 @@ public class DBCustomerTypePriceDAO extends AbstractDAO implements CustomerTypeP
 		if (customerTypePriceList.size() > 0) {
 			customerTypePrice = (CustomerTypePrice) customerTypePriceList.get(0);
 		}
+		tx.commit();
 		return customerTypePrice;
 	}
 

@@ -42,6 +42,7 @@ public class DBOrderDAO extends AbstractDAO implements OrderDAO {
 		Transaction tx = session.beginTransaction();
 		List orderList = session.createQuery("from Order").list();
 		if (orderList == null) orderList = new ArrayList();
+		tx.commit();
 		return orderList;
 	}
 
@@ -49,6 +50,7 @@ public class DBOrderDAO extends AbstractDAO implements OrderDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Order order = (Order) session.load(Order.class, orderId);
+		tx.commit();
 		return order;
 	}
 

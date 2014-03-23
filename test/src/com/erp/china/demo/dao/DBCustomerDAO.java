@@ -41,6 +41,7 @@ public class DBCustomerDAO extends AbstractDAO implements CustomerDAO {
 		Transaction tx = session.beginTransaction();
 		List customerList = session.createQuery("from Customer").list();
 		if (customerList == null) customerList = new ArrayList();
+		tx.commit();
 		return customerList;
 	}
 
@@ -48,6 +49,7 @@ public class DBCustomerDAO extends AbstractDAO implements CustomerDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Customer customer = (Customer) session.load(Customer.class, customerId);
+		tx.commit();
 		return customer;
 	}
 

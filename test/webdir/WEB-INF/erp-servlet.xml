@@ -25,22 +25,10 @@
 	<context:annotation-config />
 	<context:component-scan base-package="com.erp.china.demo.controller"/>
 
-	<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">  -->
-	<!-- <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
-	</bean>  -->
-
 	<bean class="org.springframework.web.servlet.view.XmlViewResolver">
         <property name="location" value="/WEB-INF/jasper-view.xml"/>
         <property name="order" value="0"/>
     </bean>
-
-	<!-- <bean id="pdfReport" class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView">
-		<property name="url" value="/WEB-INF/template/invoice.jrxml"/>
-		<property name="reportDataKey" value="datasource"/>
-	</bean> -->
 
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="/WEB-INF/resources/messages" />
@@ -51,17 +39,29 @@
 		<property name="defaultLocale" value="en" />
 	</bean>
 
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-		<property name="configLocation">
-			<value>classpath:hibernate.cfg.xml</value>
-		</property>
-		<property name="configurationClass">
-			<value>org.hibernate.cfg.AnnotationConfiguration</value>
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver"/>
+		<property name="url" value="jdbc:postgresql://127.0.0.1:5432/erp_01"/>
+		<property name="username" value="robby"/>
+		<property name="password" value="12345678"/>
+	</bean>
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="packagesToScan" value="com.erp.china.demo.hbm"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key ="show_sql">true</prop>
+				<prop key ="dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key ="hbm2ddl.auto">update</prop>
+				<prop key ="current_session_context_class">thread</prop>
+				<prop key ="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</prop>
+			</props>
 		</property>
 	</bean>
 
 	<tx:annotation-driven />
-	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 </beans>

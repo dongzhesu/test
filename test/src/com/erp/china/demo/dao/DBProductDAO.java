@@ -41,6 +41,7 @@ public class DBProductDAO extends AbstractDAO implements ProductDAO {
 		Transaction tx = session.beginTransaction();
 		List productList = session.createQuery("from Product").list();
 		if (productList == null) productList = new ArrayList();
+		tx.commit();
 		return productList;
 	}
 
@@ -48,6 +49,7 @@ public class DBProductDAO extends AbstractDAO implements ProductDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Product product = (Product) session.load(Product.class, productId);
+		tx.commit();
 		return product;
 	}
 

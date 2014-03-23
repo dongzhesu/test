@@ -41,6 +41,7 @@ public class DBSalesDAO extends AbstractDAO implements SalesDAO {
 		Transaction tx = session.beginTransaction();
 		List salesList = session.createQuery("from Sales").list();
 		if (salesList == null) salesList = new ArrayList();
+		tx.commit();
 		return salesList;
 	}
 
@@ -48,6 +49,7 @@ public class DBSalesDAO extends AbstractDAO implements SalesDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Sales sales = (Sales) session.load(Sales.class, salesId);
+		tx.commit();
 		return sales;
 	}
 

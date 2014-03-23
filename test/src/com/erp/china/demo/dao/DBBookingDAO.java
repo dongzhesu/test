@@ -42,6 +42,7 @@ public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 		Transaction tx = session.beginTransaction();
 		List bookingList = session.createQuery("from Booking").list();
 		if (bookingList == null) bookingList = new ArrayList();
+		tx.commit();
 		return bookingList;
 	}
 
@@ -52,6 +53,7 @@ public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 		session.clear();
 		List bookingList = session.createQuery("from Booking where order_id = '"+order.getOrderId()+"'").list();
 		if (bookingList == null) bookingList = new ArrayList();
+		tx.commit();
 		return bookingList;
 	}
 
@@ -59,6 +61,7 @@ public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Booking booking = (Booking) session.load(Booking.class, bookingKey);
+		tx.commit();
 		return booking;
 	}
 

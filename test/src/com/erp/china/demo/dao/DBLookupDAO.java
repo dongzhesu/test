@@ -48,6 +48,7 @@ public class DBLookupDAO extends AbstractDAO implements LookupDAO {
 		Transaction tx = session.beginTransaction();
 		List lookupList = session.createQuery("from Lookup").list();
 		if (lookupList == null) lookupList = new ArrayList();
+		tx.commit();
 		return lookupList;
 	}
 
@@ -56,6 +57,7 @@ public class DBLookupDAO extends AbstractDAO implements LookupDAO {
 		Transaction tx = session.beginTransaction();
 		List lookupList = session.createCriteria(Lookup.class).add(Restrictions.like("lookupKey", criteria+"%")).list();
 		if (lookupList == null) lookupList = new ArrayList();
+		tx.commit();
 		return lookupList;
 	}
 
@@ -63,6 +65,7 @@ public class DBLookupDAO extends AbstractDAO implements LookupDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Lookup lookup = (Lookup) session.load(Lookup.class, lookupId);
+		tx.commit();
 		return lookup;
 	}
 

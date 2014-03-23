@@ -48,6 +48,7 @@ public class DBUserDAO extends AbstractDAO implements UserDAO {
 		Transaction tx = session.beginTransaction();
 		List userList = session.createQuery("from User").list();
 		if (userList == null) userList = new ArrayList();
+		tx.commit();
 		return userList;
 	}
 
@@ -55,6 +56,7 @@ public class DBUserDAO extends AbstractDAO implements UserDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		User user = (User) session.load(User.class, userId);
+		tx.commit();
 		return user;
 	}
 
@@ -106,6 +108,7 @@ public class DBUserDAO extends AbstractDAO implements UserDAO {
 		if (userList == null) return null;
 		if (userList.size() == 0) return null;
 		User user = userList.get(0);
+		tx.commit();
 		return user;
 	}
 }
