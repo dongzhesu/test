@@ -173,3 +173,11 @@
 	background-image: url(../images/close.png) !important;
 	background-repeat: no-repeat;
 }
+
+.error_login {
+    margin: 0.5em 0px;
+    display: block;
+    color: #DD4B39;
+    line-height: 17px;
+    text-align: center;
+}

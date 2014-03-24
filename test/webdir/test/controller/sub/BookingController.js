@@ -137,8 +137,8 @@ Ext.define('Test.controller.sub.BookingController', {
     
     actionItems: [
               	//Ext.create('Ext.Action',{
-                //  	text: 'Add Booking'.i18n(),
-                //  	iconCls: 'btn-add',
+                //  text: 'Add Booking'.i18n(),
+                //  iconCls: 'btn-add',
           		//	itemId: 'addBooking'
               	//}),
               	Ext.create('Ext.Action',{
@@ -147,8 +147,8 @@ Ext.define('Test.controller.sub.BookingController', {
           			itemId: 'editBooking',
               	})
               	//Ext.create('Ext.Action',{
-                //  	text: 'Delete'.i18n(),
-                //  	iconCls: 'btn-delete',
+                // 	text: 'Delete'.i18n(),
+                //  iconCls: 'btn-delete',
           		//	itemId: 'deleteBooking',
               	//})
               ]
