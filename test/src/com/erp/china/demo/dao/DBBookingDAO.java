@@ -33,7 +33,15 @@ public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		session.save(booking);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to create new Booking");
 	}
 
@@ -42,7 +50,15 @@ public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 		Transaction tx = session.beginTransaction();
 		List bookingList = session.createQuery("from Booking").list();
 		if (bookingList == null) bookingList = new ArrayList();
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return bookingList;
 	}
 
@@ -53,7 +69,15 @@ public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 		session.clear();
 		List bookingList = session.createQuery("from Booking where order_id = '"+order.getOrderId()+"'").list();
 		if (bookingList == null) bookingList = new ArrayList();
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return bookingList;
 	}
 
@@ -61,7 +85,15 @@ public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Booking booking = (Booking) session.load(Booking.class, bookingKey);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return booking;
 	}
 
@@ -77,7 +109,15 @@ public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 		existingBooking.setBookingStatus(booking.getBookingStatus());
 		existingBooking.setLastModifiedDate(new java.util.Date());
 		session.saveOrUpdate(existingBooking);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to modify existing Booking");
 	}
 
@@ -88,7 +128,15 @@ public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 		if (booking != null) {
 			sessionFactory.getCurrentSession().delete(booking);
 		}
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 	}
 
 	public boolean deleteBookingByOrderId(String orderId) {
@@ -98,7 +146,15 @@ public class DBBookingDAO extends AbstractDAO implements BookingDAO {
 			Transaction tx = session.beginTransaction();
 			Query deleteQuery = session.createQuery("delete from Booking where order_id = '"+orderId+"'");
 			int row = deleteQuery.executeUpdate();
-			tx.commit();
+			try{
+				tx.commit();
+				tx=null;
+			}finally{
+				  if(tx != null)
+				  {
+				    tx.rollback();
+				  }
+			}
 		}catch (Exception e) {
 			isDeleted = false;
 		}

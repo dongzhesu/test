@@ -26,7 +26,15 @@ public class DBSystemDAO extends AbstractDAO implements SystemDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		System system = (System) session.load(System.class, systemId);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return system;
 	}
 
@@ -38,7 +46,15 @@ public class DBSystemDAO extends AbstractDAO implements SystemDAO {
 		existingSystem.setSystemVersion(system.getSystemVersion());
 		existingSystem.setLastModifiedDate(new java.util.Date());
 		session.saveOrUpdate(existingSystem);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to modify current existing Sales");
 	}
 }

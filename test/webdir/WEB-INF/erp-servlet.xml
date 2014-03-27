@@ -42,7 +42,7 @@
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver"/>
 		<property name="url" value="jdbc:postgresql://127.0.0.1:5432/erp_01"/>
-		<property name="username" value="robby"/>
+		<property name="username" value="dongzhe"/>
 		<property name="password" value="12345678"/>
 	</bean>
 

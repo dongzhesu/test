@@ -39,7 +39,15 @@ public class DBLookupDAO extends AbstractDAO implements LookupDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		session.save(lookup);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to create new Lookup");
 	}
 
@@ -48,7 +56,15 @@ public class DBLookupDAO extends AbstractDAO implements LookupDAO {
 		Transaction tx = session.beginTransaction();
 		List lookupList = session.createQuery("from Lookup").list();
 		if (lookupList == null) lookupList = new ArrayList();
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return lookupList;
 	}
 
@@ -57,7 +73,15 @@ public class DBLookupDAO extends AbstractDAO implements LookupDAO {
 		Transaction tx = session.beginTransaction();
 		List lookupList = session.createCriteria(Lookup.class).add(Restrictions.like("lookupKey", criteria+"%")).list();
 		if (lookupList == null) lookupList = new ArrayList();
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return lookupList;
 	}
 
@@ -65,7 +89,15 @@ public class DBLookupDAO extends AbstractDAO implements LookupDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Lookup lookup = (Lookup) session.load(Lookup.class, lookupId);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return lookup;
 	}
 
@@ -76,7 +108,15 @@ public class DBLookupDAO extends AbstractDAO implements LookupDAO {
 		Lookup existingLookup = (Lookup) session.load(Lookup.class, lookup.getLookupId());
 		existingLookup.setLookupValue(lookup.getLookupValue());
 		session.saveOrUpdate(existingLookup);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to modify existing Lookup");
 	}
 
@@ -87,6 +127,14 @@ public class DBLookupDAO extends AbstractDAO implements LookupDAO {
 		if (lookup != null) {
 			sessionFactory.getCurrentSession().delete(lookup);
 		}
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 	}
 }

@@ -32,7 +32,15 @@ public class DBOrderDAO extends AbstractDAO implements OrderDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		session.save(order);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to create new Order");
 		return orderId;
 	}
@@ -42,7 +50,15 @@ public class DBOrderDAO extends AbstractDAO implements OrderDAO {
 		Transaction tx = session.beginTransaction();
 		List orderList = session.createQuery("from Order").list();
 		if (orderList == null) orderList = new ArrayList();
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return orderList;
 	}
 
@@ -50,7 +66,15 @@ public class DBOrderDAO extends AbstractDAO implements OrderDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Order order = (Order) session.load(Order.class, orderId);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return order;
 	}
 
@@ -69,7 +93,15 @@ public class DBOrderDAO extends AbstractDAO implements OrderDAO {
 		//TODO: need to add order status here
 		existingOrder.setLastModifiedDate(new java.util.Date());
 		session.saveOrUpdate(existingOrder);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to modify existing Order");
 	}
 
@@ -80,6 +112,14 @@ public class DBOrderDAO extends AbstractDAO implements OrderDAO {
 		if (order != null) {
 			sessionFactory.getCurrentSession().delete(order);
 		}
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 	}
 }

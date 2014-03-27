@@ -32,7 +32,15 @@ public class DBCustomerDAO extends AbstractDAO implements CustomerDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		session.save(customer);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to create new Customer");
 	}
 
@@ -41,7 +49,15 @@ public class DBCustomerDAO extends AbstractDAO implements CustomerDAO {
 		Transaction tx = session.beginTransaction();
 		List customerList = session.createQuery("from Customer").list();
 		if (customerList == null) customerList = new ArrayList();
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return customerList;
 	}
 
@@ -49,7 +65,15 @@ public class DBCustomerDAO extends AbstractDAO implements CustomerDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Customer customer = (Customer) session.load(Customer.class, customerId);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return customer;
 	}
 
@@ -70,7 +94,15 @@ public class DBCustomerDAO extends AbstractDAO implements CustomerDAO {
 		existingCustomer.setCustomerAddress(customer.getCustomerAddress());
 		existingCustomer.setLastModifiedDate(new java.util.Date());
 		session.saveOrUpdate(existingCustomer);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to modify existing Customer");
 	}
 
@@ -81,6 +113,14 @@ public class DBCustomerDAO extends AbstractDAO implements CustomerDAO {
 		if (customer != null) {
 			sessionFactory.getCurrentSession().delete(customer);
 		}
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 	}
 }

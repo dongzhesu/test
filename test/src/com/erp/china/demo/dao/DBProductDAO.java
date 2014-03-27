@@ -32,7 +32,15 @@ public class DBProductDAO extends AbstractDAO implements ProductDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		session.save(product);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to create new Product");
 	}
 
@@ -41,7 +49,15 @@ public class DBProductDAO extends AbstractDAO implements ProductDAO {
 		Transaction tx = session.beginTransaction();
 		List productList = session.createQuery("from Product").list();
 		if (productList == null) productList = new ArrayList();
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return productList;
 	}
 
@@ -49,7 +65,15 @@ public class DBProductDAO extends AbstractDAO implements ProductDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Product product = (Product) session.load(Product.class, productId);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return product;
 	}
 
@@ -69,7 +93,15 @@ public class DBProductDAO extends AbstractDAO implements ProductDAO {
 		existingProduct.setProductQty(product.getProductQty());
 		existingProduct.setLastModifiedDate(new java.util.Date());
 		session.saveOrUpdate(existingProduct);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to modify existing Product");
 	}
 
@@ -80,6 +112,14 @@ public class DBProductDAO extends AbstractDAO implements ProductDAO {
 		if (product != null) {
 			sessionFactory.getCurrentSession().delete(product);
 		}
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 	}
 }

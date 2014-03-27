@@ -32,7 +32,15 @@ public class DBSalesDAO extends AbstractDAO implements SalesDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		session.save(sales);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to create new Sales");
 	}
 
@@ -41,7 +49,15 @@ public class DBSalesDAO extends AbstractDAO implements SalesDAO {
 		Transaction tx = session.beginTransaction();
 		List salesList = session.createQuery("from Sales").list();
 		if (salesList == null) salesList = new ArrayList();
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return salesList;
 	}
 
@@ -49,7 +65,15 @@ public class DBSalesDAO extends AbstractDAO implements SalesDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Sales sales = (Sales) session.load(Sales.class, salesId);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return sales;
 	}
 
@@ -63,7 +87,15 @@ public class DBSalesDAO extends AbstractDAO implements SalesDAO {
 		existingSales.setSalesPhone(sales.getSalesPhone());
 		existingSales.setLastModifiedDate(new java.util.Date());
 		session.saveOrUpdate(existingSales);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to modify existing Sales");
 	}
 
@@ -74,6 +106,14 @@ public class DBSalesDAO extends AbstractDAO implements SalesDAO {
 		if (sales != null) {
 			sessionFactory.getCurrentSession().delete(sales);
 		}
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 	}
 }

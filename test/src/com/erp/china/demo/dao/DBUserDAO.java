@@ -38,8 +38,16 @@ public class DBUserDAO extends AbstractDAO implements UserDAO {
 		user.setSystem(system);
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
-		session.save(user);
-		tx.commit();
+		try{
+			session.save(user);
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to create new User");
 	}
 
@@ -47,8 +55,16 @@ public class DBUserDAO extends AbstractDAO implements UserDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		List userList = session.createQuery("from User").list();
-		if (userList == null) userList = new ArrayList();
-		tx.commit();
+		try{
+			if (userList == null) userList = new ArrayList();
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return userList;
 	}
 
@@ -56,7 +72,15 @@ public class DBUserDAO extends AbstractDAO implements UserDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		User user = (User) session.load(User.class, userId);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return user;
 	}
 
@@ -69,7 +93,15 @@ public class DBUserDAO extends AbstractDAO implements UserDAO {
 		existingUser.setUserLanguage(user.getUserLanguage());
 		existingUser.setLastModifiedDate(new java.util.Date());
 		session.saveOrUpdate(existingUser);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to modify existing User");
 	}
 
@@ -80,7 +112,15 @@ public class DBUserDAO extends AbstractDAO implements UserDAO {
 		User existingUser = (User) session.load(User.class, user.getUserId());
 		existingUser.setUserPassword(user.getUserPassword());
 		session.saveOrUpdate(existingUser);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to modify User's password with user ID: "+user.getUserId());
 	}
 
@@ -91,7 +131,15 @@ public class DBUserDAO extends AbstractDAO implements UserDAO {
 		if (user != null) {
 			sessionFactory.getCurrentSession().delete(user);
 		}
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 	}
 
 	public User fetchUserLogin(String username, String password) {
@@ -108,7 +156,15 @@ public class DBUserDAO extends AbstractDAO implements UserDAO {
 		if (userList == null) return null;
 		if (userList.size() == 0) return null;
 		User user = userList.get(0);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return user;
 	}
 }

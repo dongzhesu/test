@@ -32,7 +32,15 @@ public class DBStorageDAO extends AbstractDAO implements StorageDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		session.save(storage);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to create new Storage");
 	}
 
@@ -41,7 +49,15 @@ public class DBStorageDAO extends AbstractDAO implements StorageDAO {
 		Transaction tx = session.beginTransaction();
 		List storageList = session.createQuery("from Storage").list();
 		if (storageList == null) storageList = new ArrayList();
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return storageList;
 	}
 
@@ -49,7 +65,15 @@ public class DBStorageDAO extends AbstractDAO implements StorageDAO {
 		Session session = getCurrentSession(sessionFactory);
 		Transaction tx = session.beginTransaction();
 		Storage storage = (Storage) session.load(Storage.class, storageId);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		return storage;
 	}
 
@@ -62,7 +86,15 @@ public class DBStorageDAO extends AbstractDAO implements StorageDAO {
 		existingStorage.setStorageDesc(storage.getStorageDesc());
 		existingStorage.setLastModifiedDate(new java.util.Date());
 		session.saveOrUpdate(existingStorage);
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 		logger.info("succeed to modify existing Storage");
 	}
 
@@ -73,6 +105,14 @@ public class DBStorageDAO extends AbstractDAO implements StorageDAO {
 		if (storage != null) {
 			sessionFactory.getCurrentSession().delete(storage);
 		}
-		tx.commit();
+		try{
+			tx.commit();
+			tx=null;
+		}finally{
+			  if(tx != null)
+			  {
+			    tx.rollback();
+			  }
+		}
 	}
 }
