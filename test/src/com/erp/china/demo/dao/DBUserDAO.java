@@ -153,9 +153,6 @@ public class DBUserDAO extends AbstractDAO implements UserDAO {
 			criteria.add(Expression.eq("userPassword", password));
 		}
 		List<User> userList = criteria.list();
-		if (userList == null) return null;
-		if (userList.size() == 0) return null;
-		User user = userList.get(0);
 		try{
 			tx.commit();
 			tx=null;
@@ -165,6 +162,9 @@ public class DBUserDAO extends AbstractDAO implements UserDAO {
 			    tx.rollback();
 			  }
 		}
+		if (userList == null) return null;
+		if (userList.size() == 0) return null;
+		User user = userList.get(0);
 		return user;
 	}
 }
