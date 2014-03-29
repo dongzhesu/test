@@ -26,13 +26,16 @@ Ext.define('Test.view.edit.Order', {
 							xtype: 'combo',
 							name : 'customer_id',
 							fieldLabel: 'Customer Name',
-							editable: false,
+							//editable: false,
 							emptyText: 'Please select',
 							store: Ext.create('Test.store.CustomerStore').load(),
 							valueField: 'customer_id',
 							displayField: 'customer_name',
 							allowBlank: false,
-						
+
+							queryMode: 'local',
+							typeAhead: true,
+							
 							listeners:{
 								select: function(combo, records, eOpts){
 								var ctype=	records[0].get('customer_type');
@@ -122,9 +125,11 @@ Ext.define('Test.view.edit.Order', {
 						displayField: 'product_code',
 						store: Ext.create('Test.store.Products').load(),
 						valueField: 'product_id',
+						allowBlank: false,
+						
 						queryMode: 'local',
 						typeAhead: true,
-						allowBlank: false,
+
 						value: booking.get('product_id'),
 						listeners:{
 							select: function(combo, records, eOpts){
